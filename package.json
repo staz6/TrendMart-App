@@ -8,13 +8,17 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --fix --max-warnings=0",
-    "format": "prettier . --write",
+    "format": "prettier . --write && git add .",
     "preview": "vite preview",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.53.3",
+    "@types/react-router-dom": "^5.3.3",
+    "framer-motion": "^11.3.31",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
