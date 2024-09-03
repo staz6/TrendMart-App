@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --color-primary: #ffffff;
+  --color-primary1: #363738;
+  --color-secondary: #f5f5f5;
+  --color-secondary1: #fefaf1;
+  --color-secondary2: #db4444;
+  --color-bg: #ffffff;
+  --color-text: #fafafa;
+  --color-text1: #7d8184;
+  --color-text2: #000000;
+  --color-button: #000000;
+  --color-button1: #00ff66;
+  --color-button2: #db4444;
+  --color-hoverbutton1: #e07575;
+  --color-hoverbutton2: #a0bce0;
+  background-color: var(--color-bg);
+}
