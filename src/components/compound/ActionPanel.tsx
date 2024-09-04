@@ -6,7 +6,7 @@ import Searchbar from "./Searchbar";
 
 const ActionPanel: React.FC = () => {
   return (
-    <div className="hidden lg:flex gap-5">
+    <div className=" flex flex-col justify-center items-center lg:justify-normal lg:flex-row gap-5">
       <Searchbar />
       <Button className="ml-2" onClick={() => {}} icon="" description="">
         <img className="w-6 h-6" src={Heart} alt="" />

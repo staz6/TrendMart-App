@@ -11,7 +11,7 @@ const Searchbar: React.FC = () => {
         placeholder="What are you looking for?"
         value={SearchProduct}
         onChange={setSearchProduct}
-        className="font-poppins w-[13.5rem] bg-transparent outline-none  placeholder:text-sm placeholder:text-black placeholder:opacity-50"
+        className="font-poppins w-[13.5rem] text-black bg-transparent outline-none  placeholder:text-sm placeholder:text-black placeholder:opacity-50"
         onClick={() => {}}
         type="string"
       />

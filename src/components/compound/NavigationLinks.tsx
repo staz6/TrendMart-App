@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const NavigationLinks: React.FC = () => {
   return (
-    <div className="hidden lg:flex gap-5 xl:gap-10 text-md font-medium font-poppins">
+    <div className="flex flex-col lg:flex-row gap-5 xl:gap-10 text-md font-medium font-poppins">
       <NavLink
         to="/"
         className={({ isActive }) =>

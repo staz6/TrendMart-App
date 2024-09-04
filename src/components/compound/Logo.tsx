@@ -5,7 +5,7 @@ const Logo: React.FC = () => {
   return (
     <NavLink
       to="/"
-      className="text-2xl font-extrabold tracking-wider font-inter"
+      className="text-2xl z-20 font-extrabold tracking-wider font-inter"
     >
       Exclusive
     </NavLink>
