@@ -25,3 +25,21 @@
   --color-hoverbutton2: #a0bce0;
   background-color: var(--color-bg);
 }
+
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: var(--color-secondary2);
+  opacity: 1;
+  height: 0.8rem;
+  width: 0.8rem;
+  border: 2px solid var(--color-primary);
+}
+
+/* target all bullets */
+.swiper-pagination-bullet {
+  background-color: var(--color-primary);
+  opacity: 0.5;
+  height: 0.8rem;
+  width: 0.8rem;
+  position: relative;
+  top: 0.2rem;
+}

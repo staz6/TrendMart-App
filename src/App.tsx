@@ -1,26 +1,32 @@
 import "./App.css";
-import { Header } from "./components/complex/Header";
+import Home from "./Pages/Home";
+import Layout from "./components/Layout/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Header />,
-  },
-  {
-    path: "/Contact",
-    element: <Header />,
-  },
-  {
-    path: "/Sign_Up",
-    element: <Header />,
-  },
-  {
-    path: "/About",
-    element: <Header />,
+    element: <Layout />, // Always display the layout with the header
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/Contact",
+        element: <div>Contact Page</div>, // Replace with actual component
+      },
+      {
+        path: "/Sign_Up",
+        element: <div>Sign Up Page</div>, // Replace with actual component
+      },
+      {
+        path: "/About",
+        element: <div>About Page</div>, // Replace with actual component
+      },
+    ],
   },
 ]);
-
 function App() {
   return (
     <>
