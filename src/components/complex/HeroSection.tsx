@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import CustomSlider from "./CustomSlider";
+import HeroSlider from "../compound/HeroSlider";
 
 const HeroSection: React.FC = () => {
   return (
@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
 
       <div className="md:w-[70%] md:pl-10 flex flex-col justify-center xl:justify-end">
         <div className="lg:w-[80%] md:w-[90%] w-[90%] mx-auto md:mx-0  mt-10">
-          <CustomSlider />
+          <HeroSlider />
         </div>
       </div>
     </div>
