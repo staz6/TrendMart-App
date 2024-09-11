@@ -51,7 +51,7 @@ const Home: React.FC = () => {
           onAddToCart={() => console.log("Added to cart")}
           onWishlist={() => console.log("Added to wishlist")}
           onViewDetails={() => console.log("View details")}
-        />{" "}
+        />
         <ProductCard
           image={productImage}
           title="HAVIT HV-G92 Gamepad"
@@ -108,7 +108,7 @@ const Home: React.FC = () => {
           onAddToCart={() => console.log("Added to cart")}
           onWishlist={() => console.log("Added to wishlist")}
           onViewDetails={() => console.log("View details")}
-        />{" "}
+        />
         <ProductCard
           image={productImage}
           title="HAVIT HV-G92 Gamepad"

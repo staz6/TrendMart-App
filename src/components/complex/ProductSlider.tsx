@@ -1,38 +1,19 @@
-import React, { ReactNode, useState } from "react";
-import "./ProductSlider.css";
+import React, { ReactNode, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 import CountdownTimer from "../compound/CountDownTimer";
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import Button from "../shared/Button";
+import "swiper/css";
+import "swiper/css/navigation";
 
 interface ProductSliderProps {
   children: ReactNode[];
 }
 
 const ProductSlider: React.FC<ProductSliderProps> = ({ children }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const itemsToShow = 4;
-
-  const duplicatedChildren = [
-    ...children.slice(-itemsToShow),
-    ...children,
-    ...children.slice(0, itemsToShow),
-  ];
-
-  const slideNext = () => {
-    if (activeIndex < children.length + itemsToShow - 1) {
-      setActiveIndex((prevIndex) => prevIndex + 1);
-    } else {
-      setActiveIndex(itemsToShow);
-    }
-  };
-
-  const slidePrev = () => {
-    if (activeIndex > itemsToShow) {
-      setActiveIndex((prevIndex) => prevIndex - 1);
-    } else {
-      setActiveIndex(duplicatedChildren.length - itemsToShow - 1);
-    }
-  };
+  const prevRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
     <div className="xl:pl-32 px-10 margin-auto lg:px-[5%] mt-20 mb-20 ">
@@ -50,32 +31,48 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ children }) => {
         <div className="flex gap-4">
           <Button
             className="p-3 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white text-text2 bg-secondary1 rounded-full"
-            onClick={slidePrev}
+            onClick={() => prevRef.current?.click()}
             icon={<IoMdArrowBack size={28} />}
+            ref={prevRef}
             description=""
           />
           <Button
             className="p-3 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white text-text2 bg-secondary1 rounded-full"
-            onClick={slideNext}
+            onClick={() => nextRef.current?.click()}
             icon={<IoMdArrowForward size={28} />}
+            ref={nextRef}
             description=""
           />
         </div>
       </div>
 
       <div className="overflow-hidden w-full">
-        <div
-          className="flex transition-transform duration-500"
-          style={{
-            transform: `translateX(-${((activeIndex + itemsToShow) / duplicatedChildren.length) * 100}%)`,
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={10}
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            830: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
           }}
+          onBeforeInit={(swiper) => {
+            if (
+              swiper.params.navigation &&
+              typeof swiper.params.navigation !== "boolean"
+            ) {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }
+          }}
+          className="flex"
         >
-          {duplicatedChildren.map((item, index) => (
-            <div key={index} className="flex-shrink-0 px-2">
+          {children.map((item, index) => (
+            <SwiperSlide key={index} className="flex justify-center">
               {item}
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </div>
   );
