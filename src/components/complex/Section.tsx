@@ -17,7 +17,7 @@ const Section: React.FC<SectionProps> = ({
   children,
   sectionTitle,
   sliderTitle,
-  showTimer = false,
+  showTimer,
 }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
