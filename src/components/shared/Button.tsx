@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 export interface ButtonProps {
   onClick: () => void;
@@ -9,23 +9,29 @@ export interface ButtonProps {
   testid?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  onClick,
-  icon,
-  className = "",
-  description = "",
-  children = null,
-  testid = "",
-}) => (
-  <button
-    type="button"
-    className={className}
-    data-testid={testid}
-    onClick={onClick}
-  >
-    {description && <span className="ml-2">{description}</span>} {icon}
-    {children}
-  </button>
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      onClick,
+      icon,
+      className = "",
+      description = "",
+      children = null,
+      testid = "",
+    },
+    ref,
+  ) => (
+    <button
+      type="button"
+      className={className}
+      data-testid={testid}
+      onClick={onClick}
+      ref={ref}
+    >
+      {description && <span className="ml-2">{description}</span>} {icon}
+      {children}
+    </button>
+  ),
 );
 
 export default Button;
