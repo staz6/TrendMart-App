@@ -4,6 +4,7 @@ import ProductCard from "../components/compound/ProductCard";
 import productImage from "../assets/productImage.png";
 import FlashSalesSection from "../components/complex/FlashSalesSection";
 import Wrapper from "../components/compound/Wrapper";
+import { CategoriesSection } from "../components/complex/CategoriesSection";
 const Home: React.FC = () => {
   return (
     <Wrapper>
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
         ))}
       </div>
       <FlashSalesSection />
+      <CategoriesSection />
     </Wrapper>
   );
 };
