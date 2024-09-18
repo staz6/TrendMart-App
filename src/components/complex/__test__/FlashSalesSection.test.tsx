@@ -29,6 +29,7 @@ describe("Section component", () => {
   it("renders the section title and slider title", () => {
     render(
       <Section
+        showPagination
         sectionTitle={sectionTitle}
         sliderTitle={sliderTitle}
         showTimer={false}
@@ -47,6 +48,7 @@ describe("Section component", () => {
   it("renders the CountdownTimer when showTimer is true", () => {
     render(
       <Section
+        showPagination
         sectionTitle={sectionTitle}
         sliderTitle={sliderTitle}
         showTimer={true}
@@ -62,6 +64,7 @@ describe("Section component", () => {
   it("renders the slider controls and content", () => {
     render(
       <Section
+        showPagination
         sectionTitle={sectionTitle}
         sliderTitle={sliderTitle}
         showTimer={false}
