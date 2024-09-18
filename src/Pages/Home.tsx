@@ -5,6 +5,7 @@ import productImage from "../assets/productImage.png";
 import FlashSalesSection from "../components/complex/FlashSalesSection";
 import Wrapper from "../components/compound/Wrapper";
 import { CategoriesSection } from "../components/complex/CategoriesSection";
+import BestSellingSection from "../components/complex/BestSellingSection";
 const Home: React.FC = () => {
   return (
     <Wrapper>
@@ -16,8 +17,7 @@ const Home: React.FC = () => {
             image={productImage}
             title="HAVIT HV-G92 Gamepad"
             price={120}
-            originalPrice={160}
-            discount="-40%"
+            discount={40}
             rating={4}
             onAddToCart={() => console.log("Added to cart")}
             onWishlist={() => console.log("Added to wishlist")}
@@ -27,6 +27,7 @@ const Home: React.FC = () => {
       </div>
       <FlashSalesSection />
       <CategoriesSection />
+      <BestSellingSection />
     </Wrapper>
   );
 };
