@@ -5,9 +5,15 @@ import Section from "./Section";
 
 const FlashSalesSection: React.FC = () => {
   return (
-    <Section sectionTitle="Today's" sliderTitle="Flash Sales" showTimer>
-      {Array.from({ length: 6 }).map(() => (
+    <Section
+      sectionTitle="Today's"
+      showPagination
+      sliderTitle="Flash Sales"
+      showTimer
+    >
+      {Array.from({ length: 6 }).map((_, index) => (
         <ProductCard
+          key={index}
           image={productImage}
           title="HAVIT HV-G92 Gamepad"
           price={120}
