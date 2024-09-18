@@ -10,8 +10,7 @@ interface ProductCardProps {
   image: string;
   title: string;
   price: number;
-  originalPrice: number;
-  discount: string;
+  discount: number;
   rating: number;
   onAddToCart: () => void;
   onWishlist: () => void;
@@ -22,7 +21,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   image,
   title,
   price,
-  originalPrice,
   discount,
   rating,
   onAddToCart,
@@ -30,7 +28,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onViewDetails,
 }) => {
   const [hover, setHover] = useState(false);
-
+  const originalPrice = (price * (100 - discount)) / 100;
+  console.log(price);
   return (
     <div className="w-72 h-auto text-text2 font-poppins">
       <div
@@ -38,9 +37,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         onMouseLeave={() => setHover(false)}
         className="bg-secondary relative flex justify-center p-5 py-12 overflow-y-hidden"
       >
-        <h1 className="absolute top-3 left-3 bg-button2 text-secondary px-4 text-sm py-[0.35rem] rounded-[0.3rem]">
-          {discount}
-        </h1>
+        {discount != 0 && (
+          <h1 className="absolute top-3 left-3 bg-button2 text-secondary px-4 text-sm py-[0.35rem] rounded-[0.3rem]">
+            -{discount}%
+          </h1>
+        )}
+
         <div className="absolute flex flex-col top-3 right-3">
           <Button
             className="p-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
@@ -77,8 +79,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </div>
       <h1 className="font-medium mt-4">{title}</h1>
       <h1 className="mt-2 font-medium mb-2 text-button2">
-        ${price}{" "}
-        <span className="text-text1 ml-2 line-through">${originalPrice}</span>
+        ${price}
+        {discount != 0 && (
+          <span className="text-text1 ml-2 line-through">${originalPrice}</span>
+        )}
       </h1>
       <div className="flex items-center gap-1">
         {[...Array(5)].map((_, index) => {
