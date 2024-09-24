@@ -10,6 +10,7 @@ const BestSellingSection: React.FC = () => {
       sectionTitle="This Month"
       showPagination
       sliderTitle="Best Selling Products"
+      testId="BestSellingProducts"
     >
       {Array.from({ length: 6 }).map((_, index) => (
         <ProductCard

@@ -4,7 +4,10 @@ import Button from "../shared/Button";
 
 const PromoBanner: React.FC = () => {
   return (
-    <section className="bg-black mb-10  text-white flex justify-center items-center">
+    <section
+      data-testid="PromoBanner"
+      className="bg-black mb-10  text-white flex justify-center items-center"
+    >
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 ">
         <div className="">
           <div className="py-12 px-6 flex sm:ml-6 flex-col justify-center gap-6">

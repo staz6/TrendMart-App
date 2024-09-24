@@ -1,32 +1,33 @@
 import React from "react";
 import ProductCard from "../compound/ProductCard";
-import productImage from "../../assets/productImage.png";
 import Section from "./Section";
+import productImage from "../../assets/productImage.png";
 
-const FlashSalesSection: React.FC = () => {
+const ExploreOurProducts: React.FC = () => {
   return (
     <Section
-      sectionTitle="Today's"
+      showTimer={false}
+      sectionTitle="Our Products"
       showPagination
-      sliderTitle="Flash Sales"
-      showTimer
-      testId="FlashSales"
+      sliderTitle="Explore Our Products"
+      testId="ExploreOurProducts"
     >
       {Array.from({ length: 6 }).map((_, index) => (
         <ProductCard
           key={index}
           image={productImage}
           title="HAVIT HV-G92 Gamepad"
-          price={120}
-          discount={40}
+          price={160}
+          discount={0}
           rating={4}
           onAddToCart={() => console.log("Added to cart")}
           onWishlist={() => console.log("Added to wishlist")}
           onViewDetails={() => console.log("View details")}
+          New
         />
       ))}
     </Section>
   );
 };
 
-export default FlashSalesSection;
+export default ExploreOurProducts;

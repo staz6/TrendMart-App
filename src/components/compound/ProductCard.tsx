@@ -15,6 +15,7 @@ interface ProductCardProps {
   onAddToCart: () => void;
   onWishlist: () => void;
   onViewDetails: () => void;
+  New?: boolean;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -26,6 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onAddToCart,
   onWishlist,
   onViewDetails,
+  New = false,
 }) => {
   const [hover, setHover] = useState(false);
   const originalPrice = (price * (100 - discount)) / 100;
@@ -33,24 +35,31 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div className="w-72 h-auto text-text2 font-poppins">
       <div
+        data-testid="ProductCardImage"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         className="bg-secondary relative flex justify-center p-5 py-12 overflow-y-hidden"
       >
-        {discount != 0 && (
+        {discount != 0 && !New && (
           <h1 className="absolute top-3 left-3 bg-button2 text-secondary px-4 text-sm py-[0.35rem] rounded-[0.3rem]">
             -{discount}%
           </h1>
         )}
-
+        {New && (
+          <h1 className="absolute top-3 left-3 bg-button1 text-secondary px-4 text-sm py-[0.35rem] rounded-[0.3rem]">
+            new
+          </h1>
+        )}
         <div className="absolute flex flex-col top-3 right-3">
           <Button
+            testid="wishList"
             className="p-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
             onClick={onWishlist}
             icon={<BiHeart size={22} />}
             description=""
           />
           <Button
+            testid="viewDetails"
             className="p-2 mt-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
             onClick={onViewDetails}
             icon={<FiEye size={22} />}
