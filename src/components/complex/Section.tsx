@@ -13,6 +13,7 @@ interface SectionProps {
   sliderTitle: string;
   showTimer: boolean;
   showPagination: boolean;
+  testId?: string;
   spaceBetween?: number;
   breakpoints?: {
     [key: number]: {
@@ -36,12 +37,13 @@ const Section: React.FC<SectionProps> = ({
     1280: { slidesPerView: 4 },
   },
   loop = true,
+  testId = "",
 }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className=" margin-auto  ">
+    <div data-testid={testId} className=" margin-auto  ">
       <SectionTitle title={sectionTitle} />
       <div className="flex sm:flex-row flex-col justify-between items-center mb-8">
         <div className="flex sm:flex-row my-5 md:mt-0 flex-col sm:items-end text-text2 gap-5 sm:gap-14 md:gap-20 ">

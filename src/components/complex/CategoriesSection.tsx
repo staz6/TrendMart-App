@@ -17,6 +17,7 @@ export const CategoriesSection: React.FC = () => {
       sliderTitle="Browse By Category"
       showTimer={false}
       showPagination={false}
+      testId="BrowseByCategory"
     >
       {Array.from({ length: 8 }).map((_, index) => (
         <CategoriesItem key={index} icon={<IoIosPhonePortrait size={50} />} />
