@@ -8,6 +8,7 @@ import { CategoriesSection } from "../components/complex/CategoriesSection";
 import BestSellingSection from "../components/complex/BestSellingSection";
 import PromoBanner from "../components/complex/PromoBanner";
 import ExploreOurProducts from "../components/complex/ExploreOurProducts";
+import ServicesSection from "../components/complex/ServicesSection";
 const Home: React.FC = () => {
   return (
     <Wrapper>
@@ -32,6 +33,7 @@ const Home: React.FC = () => {
       <BestSellingSection />
       <PromoBanner />
       <ExploreOurProducts />
+      <ServicesSection />
     </Wrapper>
   );
 };
