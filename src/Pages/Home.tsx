@@ -9,6 +9,7 @@ import BestSellingSection from "../components/complex/BestSellingSection";
 import PromoBanner from "../components/complex/PromoBanner";
 import ExploreOurProducts from "../components/complex/ExploreOurProducts";
 import ServicesSection from "../components/complex/ServicesSection";
+import NewArrivalSection from "../components/complex/NewArrivalSection";
 const Home: React.FC = () => {
   return (
     <Wrapper>
@@ -34,6 +35,7 @@ const Home: React.FC = () => {
       <PromoBanner />
       <ExploreOurProducts />
       <ServicesSection />
+      <NewArrivalSection />
     </Wrapper>
   );
 };

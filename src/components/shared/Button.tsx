@@ -28,7 +28,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick={onClick}
       ref={ref}
     >
-      {description && <span className="ml-2">{description}</span>} {icon}
+      {description && <span>{description}</span>} {icon}
       {children}
     </button>
   ),
