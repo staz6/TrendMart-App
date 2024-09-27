@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ProductCard from "../ProductCard";
 import "@testing-library/jest-dom";
-import "@testing-library/jest-dom";
 
 describe("ProductCard Component", () => {
   const setup = () => {
