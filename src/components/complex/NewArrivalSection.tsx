@@ -31,7 +31,7 @@ const products = [
 
 const NewArrivalSection: React.FC = () => {
   return (
-    <div className="" data-testid="NewArrivals">
+    <div className="mb-10" data-testid="NewArrivals">
       <SectionTitle title="Featured" />
       <h1 className="capital font-semibold tracking-wide text-3xl font-inter text-text2 my-5">
         New Arrival

@@ -31,6 +31,5 @@ describe("Testing Home page component", () => {
     expect(screen.getByTestId("ExploreOurProducts")).toBeInTheDocument();
     expect(screen.getByTestId("ServiceSection")).toBeInTheDocument();
     expect(screen.getByTestId("NewArrivals")).toBeInTheDocument();
-
   });
 });

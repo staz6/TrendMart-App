@@ -34,8 +34,8 @@ const Home: React.FC = () => {
       <BestSellingSection />
       <PromoBanner />
       <ExploreOurProducts />
-      <ServicesSection />
       <NewArrivalSection />
+      <ServicesSection />
     </Wrapper>
   );
 };
