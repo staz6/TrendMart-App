@@ -7,6 +7,9 @@ export default {
         poppins: ["Poppins", "sans-serif"],
         inter: ["Inter", "sans-serif"],
       },
+      boxShadow: {
+        CustomBoxShadow: "0px 2px 8px 0px rgba(99, 99, 99, 0.2)",
+      },
       colors: {
         primary: "var(--color-primary)",
         primary1: "var(--color-primary1)",
