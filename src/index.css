@@ -28,26 +28,54 @@
   background-color: var(--color-bg);
 }
 
-span.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: var(--color-secondary2);
+.ActiveHeroSliderBullet {
+  background-color: var(--color-button2) !important;
+  border: 3px solid white;
+  width: 1rem;
+  height: 1rem;
+}
+
+.HeroSliderBullet {
+  background-color: rgb(255, 255, 255, 0.5);
   opacity: 1;
-  height: 0.8rem;
-  width: 0.8rem;
-  border: 2px solid var(--color-primary);
+  width: 1rem;
+  height: 1rem;
 }
 
-/* target all bullets */
-.swiper-pagination-bullet {
-  background-color: var(--color-primary);
-  opacity: 0.5;
-  height: 0.8rem;
-  width: 0.8rem;
+.TeamMemberSliderBullet {
+  opacity: 0.3;
+  width: 1rem;
+  height: 1rem;
+}
+
+.ActiveTeamMemberSliderBullet {
+  background-color: var(--color-bg) !important;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  width: 1.2rem;
+  height: 1.2rem;
+  opacity: 1;
   position: relative;
-  top: 0.2rem;
 }
 
-/* .banner {
-  background-image: url("../src/assets/bannerBackground.svg");
-  background-position: calc(50% - 20px) center; 
-  background-size: cover;
-} */
+.ActiveTeamMemberSliderBullet::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: var(--color-button2) !important;
+  opacity: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.team_member .swiper-pagination {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 2rem;
+  align-items: center;
+}

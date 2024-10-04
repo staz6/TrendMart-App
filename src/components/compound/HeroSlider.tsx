@@ -12,7 +12,12 @@ const HeroSlider: React.FC = () => {
       spaceBetween={50}
       slidesPerView={1}
       loop={true}
-      pagination={{ clickable: true }}
+      pagination={{
+        clickable: true,
+        bulletClass: "swiper-pagination-bullet HeroSliderBullet",
+        bulletActiveClass:
+          "swiper-pagination-bullet-active ActiveHeroSliderBullet",
+      }}
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
