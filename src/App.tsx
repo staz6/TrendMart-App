@@ -1,5 +1,6 @@
 import "./App.css";
 import AboutUs from "./Pages/AboutUs";
+import ContactUs from "./Pages/ContactUs";
 import Home from "./Pages/Home";
 import SignUp from "./Pages/SignUp";
 
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/Contact",
-        element: <div>Contact Page</div>,
+        element: <ContactUs />,
       },
       {
         path: "/Sign_Up",
