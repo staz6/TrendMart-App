@@ -1,6 +1,8 @@
 import "./App.css";
+import AboutUs from "./Pages/AboutUs";
 import Home from "./Pages/Home";
-import SignUp from "./Pages/__test__/SignUp";
+import SignUp from "./Pages/SignUp";
+
 import Layout from "./components/Layout/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -23,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/About",
-        element: <div>About Page</div>,
+        element: <AboutUs />,
       },
     ],
   },
