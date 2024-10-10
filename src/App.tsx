@@ -3,6 +3,8 @@ import AboutUs from "./Pages/AboutUs";
 import ContactUs from "./Pages/ContactUs";
 import Home from "./Pages/Home";
 import SignUp from "./Pages/SignUp";
+import ViewCart from "./Pages/ViewCart";
+import { CartProvider } from "./components/Context/CartContext";
 
 import Layout from "./components/Layout/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -28,13 +30,19 @@ const router = createBrowserRouter([
         path: "/About",
         element: <AboutUs />,
       },
+      {
+        path: "/Cart",
+        element: <ViewCart />,
+      },
     ],
   },
 ]);
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </>
   );
 }

@@ -19,8 +19,6 @@ const HeroSlider: React.FC = () => {
           "swiper-pagination-bullet-active ActiveHeroSliderBullet",
       }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       <SwiperSlide>
         <img className="w-full " src={HeroImage} alt="" />
