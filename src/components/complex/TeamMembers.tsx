@@ -62,8 +62,6 @@ const TeamMembers: React.FC = () => {
               "swiper-pagination-bullet-active ActiveTeamMemberSliderBullet",
           }}
           scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
         >
           {members.map((member, index) => (
             <SwiperSlide className="flex justify-center">

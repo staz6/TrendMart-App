@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Button from "../shared/Button";
 import starfill from "../../assets/starfill.svg";
 import starEmpty from "../../assets/starEmpty.svg";
+import { useCart } from "../Context/CartContext";
 
 interface ProductCardProps {
   image: string;
@@ -24,14 +25,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   discount,
   rating,
-  onAddToCart,
   onWishlist,
   onViewDetails,
   New = false,
 }) => {
   const [hover, setHover] = useState(false);
   const originalPrice = (price * (100 - discount)) / 100;
-  console.log(price);
+  const { addToCart } = useCart();
   return (
     <div className="w-72 h-auto text-text2 font-poppins">
       <div
@@ -77,7 +77,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             >
               <Button
                 className="hover:bg-button2 transition-all duration-200 text-text py-2 bg-text2 w-full"
-                onClick={onAddToCart}
+                onClick={() => addToCart({ title: title, price: price })}
                 icon=""
                 description="Add To Cart"
               />

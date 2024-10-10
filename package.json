@@ -30,7 +30,8 @@
     "save-dev": "^0.0.1-security",
     "swiper": "^11.1.12",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -42,6 +43,7 @@
     "@eslint/js": "^9.9.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "babel-jest": "^29.7.0",
