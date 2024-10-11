@@ -1,6 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ProductCard from "../ProductCard";
 import "@testing-library/jest-dom";
+import { v4 as uuidv4 } from "uuid";
+import { WishlistProvider } from "../../Context/WishlistContext";
+import { CartProvider } from "../../Context/CartContext";
 
 describe("ProductCard Component", () => {
   const setup = () => {
@@ -9,17 +12,22 @@ describe("ProductCard Component", () => {
     const mockViewDetails = jest.fn();
 
     render(
-      <ProductCard
-        image="path/to/image.jpg"
-        title="Test Product"
-        price={100}
-        discount={20}
-        rating={3}
-        onAddToCart={mockAddToCart}
-        onWishlist={mockWishlist}
-        onViewDetails={mockViewDetails}
-        New={false}
-      />,
+      <CartProvider>
+        <WishlistProvider>
+          <ProductCard
+            id={uuidv4()}
+            image="path/to/image.jpg"
+            title="Test Product"
+            price={100}
+            discount={20}
+            rating={3}
+            onAddToCart={mockAddToCart}
+            onWishlist={mockWishlist}
+            onViewDetails={mockViewDetails}
+            New={false}
+          />
+        </WishlistProvider>
+      </CartProvider>,
     );
 
     return { mockAddToCart, mockWishlist, mockViewDetails };

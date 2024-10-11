@@ -6,8 +6,11 @@ import Button from "../shared/Button";
 import starfill from "../../assets/starfill.svg";
 import starEmpty from "../../assets/starEmpty.svg";
 import { useCart } from "../Context/CartContext";
+import { IoTrashOutline } from "react-icons/io5";
+import { useWishlist } from "../Context/WishlistContext";
 
 interface ProductCardProps {
+  id: string;
   image: string;
   title: string;
   price: number;
@@ -20,18 +23,19 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
+  id,
   image,
   title,
   price,
   discount,
   rating,
-  onWishlist,
-  onViewDetails,
   New = false,
 }) => {
   const [hover, setHover] = useState(false);
   const originalPrice = (price * (100 - discount)) / 100;
   const { addToCart } = useCart();
+  const { addToWishlist, wishlistItems, removeFromWishlist } = useWishlist();
+  const inWishlist = wishlistItems.find((item) => item.id === id);
   return (
     <div className="w-72 h-auto text-text2 font-poppins">
       <div
@@ -51,20 +55,42 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </h1>
         )}
         <div className="absolute flex flex-col top-3 right-3">
-          <Button
-            testid="wishList"
-            className="p-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
-            onClick={onWishlist}
-            icon={<BiHeart size={22} />}
-            description=""
-          />
-          <Button
-            testid="viewDetails"
-            className="p-2 mt-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
-            onClick={onViewDetails}
-            icon={<FiEye size={22} />}
-            description=""
-          />
+          {!inWishlist ? (
+            <>
+              <Button
+                testid="wishList"
+                className="p-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
+                onClick={() =>
+                  addToWishlist({
+                    id,
+                    image,
+                    title,
+                    price,
+                    discount,
+                    rating,
+                    New,
+                  })
+                }
+                icon={<BiHeart size={22} />}
+                description=""
+              />
+              <Button
+                testid="viewDetails"
+                className="p-2 mt-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
+                onClick={() => {}}
+                icon={<FiEye size={22} />}
+                description=""
+              />
+            </>
+          ) : (
+            <Button
+              testid="viewDetails"
+              className="p-2 mt-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
+              onClick={() => removeFromWishlist(id)}
+              icon={<IoTrashOutline size={24} />}
+              description=""
+            />
+          )}
         </div>
         <AnimatePresence>
           {hover && (
@@ -77,7 +103,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
             >
               <Button
                 className="hover:bg-button2 transition-all duration-200 text-text py-2 bg-text2 w-full"
-                onClick={() => addToCart({ title: title, price: price })}
+                onClick={() =>
+                  addToCart({ title: title, price: price, id: id })
+                }
                 icon=""
                 description="Add To Cart"
               />
