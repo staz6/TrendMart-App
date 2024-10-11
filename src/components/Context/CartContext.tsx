@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 type CartItem = {
   id: string;
@@ -10,7 +9,7 @@ type CartItem = {
 
 type CartContextType = {
   cartItems: CartItem[];
-  addToCart: (item: Omit<CartItem, "id" | "qty"> & { qty?: number }) => void;
+  addToCart: (item: Omit<CartItem, "qty"> & { qty?: number }) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (id: string, change: number) => void;
 };
@@ -20,8 +19,8 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (item: Omit<CartItem, "id" | "qty"> & { qty?: number }) => {
-    const newItem: CartItem = { ...item, id: uuidv4(), qty: item.qty ?? 1 };
+  const addToCart = (item: Omit<CartItem, "qty"> & { qty?: number }) => {
+    const newItem: CartItem = { ...item, qty: item.qty ?? 1 };
     const existingItemIndex = cartItems.findIndex(
       (cartItem) =>
         cartItem.title === item.title && cartItem.price === item.price,

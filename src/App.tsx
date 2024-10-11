@@ -4,7 +4,9 @@ import ContactUs from "./Pages/ContactUs";
 import Home from "./Pages/Home";
 import SignUp from "./Pages/SignUp";
 import ViewCart from "./Pages/ViewCart";
+import Wishlist from "./Pages/Wishlist";
 import { CartProvider } from "./components/Context/CartContext";
+import { WishlistProvider } from "./components/Context/WishlistContext";
 
 import Layout from "./components/Layout/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
         path: "/Cart",
         element: <ViewCart />,
       },
+      {
+        path: "/Wishlist",
+        element: <Wishlist />,
+      },
     ],
   },
 ]);
@@ -41,7 +47,9 @@ function App() {
   return (
     <>
       <CartProvider>
-        <RouterProvider router={router} />
+        <WishlistProvider>
+          <RouterProvider router={router} />
+        </WishlistProvider>
       </CartProvider>
     </>
   );

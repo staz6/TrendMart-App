@@ -10,6 +10,8 @@ import PromoBanner from "../components/complex/PromoBanner";
 import ExploreOurProducts from "../components/complex/ExploreOurProducts";
 import ServicesSection from "../components/complex/ServicesSection";
 import NewArrivalSection from "../components/complex/NewArrivalSection";
+import { v4 as uuidv4 } from "uuid";
+
 const Home: React.FC = () => {
   return (
     <Wrapper>
@@ -21,6 +23,7 @@ const Home: React.FC = () => {
             image={productImage}
             title="HAVIT HV-G92 Gamepad"
             price={120}
+            id={uuidv4()}
             discount={40}
             rating={4}
             onAddToCart={() => console.log("Added to cart")}
