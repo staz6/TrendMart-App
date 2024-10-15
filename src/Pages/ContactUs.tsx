@@ -129,7 +129,7 @@ const ContactUs: React.FC = () => {
                 testid="ContactFormBtn"
                 onClick={handleSubmit}
                 icon={null}
-                className="bg-button2 text-sm text-white py-4 px-10 rounded hover:bg-red-600 transition bg-t"
+                className="bg-button2 text-sm text-white py-4 px-10 rounded hover:bg-red-600 transition"
                 description="Send Message"
               />
             </div>

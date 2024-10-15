@@ -6,7 +6,7 @@ const HeroSection: React.FC = () => {
   return (
     <div
       data-testid="HeroSection"
-      className="w-full flex md:flex-row flex-col  h-fit font-poppins  m-auto"
+      className="w-full justify-between flex md:flex-row flex-col  h-fit font-poppins  m-auto"
     >
       <div className="md:w-[30%] lg:w-[25%] margin-auto  text-black text-opacity-90 font-[500] md:border-r border-black border-opacity-30  flex flex-col justify-end gap-4">
         <NavLink to="/" className="mt-10">

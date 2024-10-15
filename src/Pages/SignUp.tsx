@@ -5,6 +5,7 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
+import { useAuthContext } from "../components/Context/UserAuthContext";
 
 interface FormState {
   name: string;
@@ -50,6 +51,7 @@ const SignUp: React.FC = () => {
   };
 
   const [state, dispatch] = useReducer(formReducer, initialState);
+  const { setisAuthenticated, setUser } = useAuthContext();
   const navigate = useNavigate();
 
   const createAccount = (): void => {
@@ -76,6 +78,8 @@ const SignUp: React.FC = () => {
       ) {
         console.log("Login successful!");
         dispatch({ type: "LOGIN_USER", payload: true });
+        setisAuthenticated(true);
+        setUser({ name: state.name, email: state.email });
         window.alert("Login successful!");
         setLogin(true);
         navigate("/");
