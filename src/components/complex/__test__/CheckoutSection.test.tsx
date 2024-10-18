@@ -1,85 +1,143 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import CheckoutSection from "../CheckoutSection";
-import { useCart } from "../../Context/CartContext";
 import "@testing-library/jest-dom";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import CheckoutSection from "../CheckoutSection";
+import { CartContext } from "../../Context/CartContext";
 
-jest.mock("../../Context/CartContext", () => ({
-  useCart: jest.fn(),
+const mockCartItems = [
+  { id: "1", title: "HAVIT HV-G92 Gamepad", price: 20, qty: 2 },
+];
+
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
 }));
 
-describe("CheckoutSection Component", () => {
-  const cartItems = [
-    { id: "1", title: "Monitor", price: 500, qty: 2 },
-    { id: "2", title: "Keyboard", price: 100, qty: 1 },
-  ];
-
+describe("CheckoutSection", () => {
   beforeEach(() => {
-    (useCart as jest.Mock).mockReturnValue({
-      cartItems,
-    });
+    localStorage.clear();
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it("should render checkout totals correctly", () => {
+  it("renders cart items correctly", () => {
     render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("Free")).toBeInTheDocument();
-    expect(screen.getAllByText("$1100")).toHaveLength(2);
-  });
-
-  it('should display the "Return To Shop" link', () => {
-    render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
+      <Router>
+        <CartContext.Provider
+          value={{
+            cartItems: mockCartItems,
+            updateQuantity() {},
+            removeFromCart() {},
+            addToCart() {},
+          }}
+        >
+          <CheckoutSection filledForm={true} />
+        </CartContext.Provider>
+      </Router>,
     );
 
-    const returnLink = screen.getByText("Return To Shop");
-    expect(returnLink).toBeInTheDocument();
-    expect(returnLink.closest("a")).toHaveAttribute("href", "/");
-  });
-  it('should display "No Items In The Cart" when cart is empty', () => {
-    (useCart as jest.Mock).mockReturnValue({
-      cartItems: [],
-    });
-
-    render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText("No Items In The Cart")).toBeInTheDocument();
-  });
-  it("should allow typing and applying a coupon code", () => {
-    render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
-    );
-
-    const couponInput = screen.getByPlaceholderText("Coupon Code");
-    fireEvent.change(couponInput, { target: { value: "DISCOUNT10" } });
-    expect(couponInput).toHaveValue("DISCOUNT10");
-    const applyCouponButton = screen.getByText("Apply Coupon");
-    fireEvent.click(applyCouponButton);
-    expect(screen.getByText("Apply Coupon")).toBeInTheDocument();
+    expect(screen.getByText(/HAVIT HV-G92 Gamepad/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/40/i)).toHaveLength(2);
   });
 
-  it("should proceed to checkout", () => {
+  it("renders total amounts correctly", () => {
     render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
+      <Router>
+        <CartContext.Provider
+          value={{
+            cartItems: mockCartItems,
+            updateQuantity() {},
+            removeFromCart() {},
+            addToCart() {},
+          }}
+        >
+          <CheckoutSection filledForm={true} />
+        </CartContext.Provider>
+      </Router>,
     );
-    const checkoutButton = screen.getByText("Proceed To Checkout");
-    fireEvent.click(checkoutButton);
-    expect(screen.getByText("Proceed To Checkout")).toBeInTheDocument();
+
+    expect(screen.getByText("Subtotal:")).toBeInTheDocument();
+    expect(screen.getAllByText(/40/i)).toHaveLength(2);
+    expect(screen.getByText("Shipping:")).toBeInTheDocument();
+    expect(screen.getByText(/50/i)).toBeInTheDocument();
+    expect(screen.getByText("Total:")).toBeInTheDocument();
+    expect(screen.getByText(/90/i)).toBeInTheDocument();
+  });
+
+  it("allows payment option selection", () => {
+    render(
+      <Router>
+        <CartContext.Provider
+          value={{
+            cartItems: mockCartItems,
+            updateQuantity() {},
+            removeFromCart() {},
+            addToCart() {},
+          }}
+        >
+          <CheckoutSection filledForm={true} />
+        </CartContext.Provider>
+      </Router>,
+    );
+
+    const bankOption = screen.getAllByRole("radio")[0];
+    const codOption = screen.getAllByRole("radio")[1];
+
+    fireEvent.click(bankOption);
+    expect(bankOption).toBeChecked();
+
+    fireEvent.click(codOption);
+    expect(codOption).toBeChecked();
+  });
+
+  it("calls handleOrder and saves to localStorage when form is filled", () => {
+    render(
+      <Router>
+        <CartContext.Provider
+          value={{
+            cartItems: mockCartItems,
+            updateQuantity() {},
+            removeFromCart() {},
+            addToCart() {},
+          }}
+        >
+          <CheckoutSection filledForm={true} />
+        </CartContext.Provider>
+      </Router>,
+    );
+
+    const placeOrderButton = screen.getByText(/Place Order/i);
+    fireEvent.click(placeOrderButton);
+
+    expect(localStorage.getItem("order")).toBeTruthy();
+    expect(mockNavigate).toHaveBeenCalledWith("OrderMessage");
+  });
+
+  it("shows an alert when form is not filled", () => {
+    window.alert = jest.fn();
+
+    render(
+      <Router>
+        <CartContext.Provider
+          value={{
+            cartItems: mockCartItems,
+            updateQuantity() {},
+            removeFromCart() {},
+            addToCart() {},
+          }}
+        >
+          <CheckoutSection filledForm={false} />
+        </CartContext.Provider>
+      </Router>,
+    );
+
+    const placeOrderButton = screen.getByText(/Place Order/i);
+    fireEvent.click(placeOrderButton);
+
+    expect(window.alert).toHaveBeenCalledWith(
+      "Please fill all the form fields",
+    );
+    expect(localStorage.getItem("order")).toBeNull();
+    expect(mockNavigate).not.toHaveBeenCalled();
   });
 });

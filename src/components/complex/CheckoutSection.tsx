@@ -1,113 +1,105 @@
 import React, { useState } from "react";
+import Coupon from "../compound/Coupon";
 import Button from "../shared/Button";
+import productImage from "../../assets/productImage.png";
+import card1 from "../../assets/BankCardImg1.svg";
+import card2 from "../../assets/BankCardImg2.svg";
+import card3 from "../../assets/BankCardImg3.svg";
+import card4 from "../../assets/BankCardImg4.svg";
+import { PaymentOption } from "../compound/PaymentOption";
+import { ProductSummary } from "../compound/ProductSummary";
+import { TotalAmount } from "../compound/TotalAmount";
 import { useCart } from "../Context/CartContext";
-import Input from "../shared/Input";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const CheckoutSection: React.FC = () => {
+interface CheckoutSectionType {
+  filledForm: boolean;
+}
+
+const CheckoutSection: React.FC<CheckoutSectionType> = ({ filledForm }) => {
+  console.log(filledForm);
+  const [selectedPayment, setSelectedPayment] = useState<
+    "Bank" | "CashOnDelivery"
+  >("Bank");
   const { cartItems } = useCart();
-  const [coupon, setCoupon] = useState<string>("");
-  const initialSubtotal = cartItems.reduce(
+  const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.qty,
     0,
   );
-  const initialShipping = initialSubtotal > 1000 ? 0 : 50;
-  const initialTotal = initialSubtotal + initialShipping;
-  const [checkout, setCheckout] = useState({
-    subtotal: initialSubtotal,
-    shipping: initialShipping,
-    total: initialTotal,
-  });
-  const calculateCheckoutTotals = () => {
-    const subtotal = cartItems.reduce(
-      (acc, item) => acc + item.price * item.qty,
-      0,
-    );
-    const shipping = subtotal > 1000 ? 0 : 50;
-    const total = subtotal + shipping;
+  const shippingFee = subtotal > 1000 ? 0 : 50;
+  const total = subtotal + shippingFee;
+  const navigate = useNavigate();
+  const handleOrder = () => {
+    if (filledForm) {
+      const orderDetails = {
+        cartItems,
+        paymentMethod: selectedPayment,
+        subtotal,
+        shippingFee,
+        total,
+      };
 
-    setCheckout({
-      subtotal,
-      shipping,
-      total,
-    });
+      localStorage.setItem("order", JSON.stringify(orderDetails));
+
+      window.alert("Order placed successfully");
+      navigate("OrderMessage");
+    } else {
+      window.alert("Please fill all the form fields");
+    }
   };
   return (
-    <div data-testid="CheckoutSection">
-      <div className="flex flex-col sm:flex-row gap-5 sm:justify-between mb-10">
-        <Link
-          className="flex  justify-center items-center text-black hover:bg-black hover:text-white transition-all duration-200"
-          to="/"
-        >
-          <h1 className=" border w-full sm:w-fit text-center rounded-[0.25rem] border-black px-8 py-3 font-medium font-poppins">
-            Return To Shop
-          </h1>
-        </Link>
-        {cartItems.length && (
-          <Button
-            onClick={() => {
-              calculateCheckoutTotals();
-            }}
-            icon=""
-            description="Update Cart"
-            className="text-black hover:bg-black hover:text-white transition-all duration-200 border rounded-[0.25rem] border-black px-8 py-3 font-medium font-poppins"
+    <div className=" mb-6 ">
+      <div className="sm:w-96">
+        {cartItems.map((item, index) => (
+          <ProductSummary
+            key={index}
+            name="HAVIT HV-G92 Gamepad"
+            price={`${item.price * item.qty}`}
+            imageSrc={productImage}
           />
-        )}
-      </div>
-      {cartItems.length ? (
-        <div className="flex flex-col sm:flex-row  justify-between mb-10">
-          <div className="flex flex-col sm:flex gap-4 mb-10 h-fit">
-            <Input
-              value={coupon}
-              onChange={(e) => setCoupon(e)}
-              type="string"
-              placeholder="Coupon Code"
-              className="border bg-transparent text-black px-5 py-3 font-poppins sm:w-72 border-black rounded-[0.25rem]"
-              onClick={() => {}}
-            />
-            <Button
-              className="capital bg-button2 font-medium px-10 p-3 rounded-[0.25rem] hover:bg-transparent hover:text-button2 border transition-all duration-300 border-button2 "
-              onClick={() => {}}
-              icon=""
-              testid="paginationProductsSection"
-              description="Apply Coupon"
-            />
-          </div>
+        ))}
 
-          <div className="border-2 rounded-[0.25rem] font-poppins text-black border-black py-6 px-6 sm:w-96">
-            <h1 className="font-medium mb-4 text-lg">Cart Total</h1>
-            <div className="flex justify-between ">
-              <span>Subtotal:</span>
-              <span>${checkout.subtotal}</span>
-            </div>
-            <hr className="border border-black border-opacity-35 my-2" />
-            <div className="flex justify-between ">
-              <span>Shipping:</span>
-              <span>{checkout.shipping ? checkout.shipping : "Free"}</span>
-            </div>
-            <hr className="border border-black border-opacity-35 my-2" />
-            <div className="flex justify-between ">
-              <span>Total:</span>
-              <span>${checkout.total}</span>
-            </div>
-            <div className="flex justify-center mt-5">
-              <Button
-                className="capital bg-button2 text-white font-medium px-10 p-3 rounded-[0.25rem] hover:bg-transparent hover:text-button2 border transition-all duration-300 border-button2 "
-                onClick={() => {}}
-                icon=""
-                testid="paginationProductsSection"
-                description="Proceed To Checkout"
-              />
-            </div>
+        <TotalAmount label="Subtotal:" amount={`${subtotal}`} />
+        <hr className="my-3 border border-black border-opacity-35" />
+        <TotalAmount
+          label="Shipping:"
+          amount={`${shippingFee ? shippingFee : "Free"}`}
+        />
+        <hr className="my-3 border border-black border-opacity-35" />
+        <TotalAmount label="Total:" amount={`${total}`} />
+
+        <div className="mt-6 flex justify-between items-center">
+          <PaymentOption
+            label="Bank"
+            value="Bank"
+            selectedValue={selectedPayment}
+            onChange={setSelectedPayment}
+          />
+          <div className="flex gap-2 ">
+            <img className="sm:h-12 sm:w-12" src={card1} alt="Card 1" />
+            <img className="sm:h-12 sm:w-12" src={card2} alt="Card 2" />
+            <img className="sm:h-12 sm:w-12" src={card3} alt="Card 3" />
+            <img className="sm:h-12 sm:w-12" src={card4} alt="Card 4" />
           </div>
         </div>
-      ) : (
-        <div className="w-96 m-auto shadow-CustomBoxShadow py-10 mb-10 ">
-          <h1 className="text-2xl text-center text-black m-auto font-poppins">
-            No Items In The Cart
-          </h1>
+
+        <div className="mt-3 mb-6">
+          <PaymentOption
+            label="Cash On Delivery"
+            value="CashOnDelivery"
+            selectedValue={selectedPayment}
+            onChange={setSelectedPayment}
+          />
         </div>
-      )}
+      </div>
+      <Coupon />
+      <Button
+        className="capital text-white mt-6 bg-button2 font-medium px-10 p-3 rounded-[0.25rem] hover:bg-transparent hover:text-button2 border transition-all duration-300 border-button2"
+        onClick={handleOrder}
+        icon=""
+        testid="paginationProductsSection"
+        description="Place Order"
+      />
     </div>
   );
 };

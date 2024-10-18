@@ -89,7 +89,7 @@ const ActionPanel: React.FC = () => {
                   </div>
                   <div className="flex gap-4 hover:text-text2 transition-all duration-200">
                     <PiShoppingBagOpen size={27} />
-                    <Link to="/MyAccount/Profile">My Order</Link>
+                    <Link to="/MyAccount/OrderHistory">My Order</Link>
                   </div>{" "}
                   <div className="flex gap-4 hover:text-text2 transition-all duration-200">
                     <MdOutlineCancel size={27} />

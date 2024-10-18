@@ -24,7 +24,6 @@
   --color-button2: #db4444;
   --color-hoverbutton1: #e07575;
   --color-hoverbutton2: #a0bce0;
-
   background-color: var(--color-bg);
 }
 
@@ -78,4 +77,10 @@
   position: relative;
   margin-top: 2rem;
   align-items: center;
+}
+
+@media (min-width: 1600px) {
+  :root {
+    font-size: 1vw;
+  }
 }
