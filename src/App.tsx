@@ -14,6 +14,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OrderHistory from "./components/complex/OrderHistory";
 import MyProfile from "./components/complex/MyProfile";
 import Account from "./Pages/Account";
+import Checkout from "./Pages/Checkout";
+import { PlaceOrderMessage } from "./components/compound/PlaceOrderMessage";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +47,14 @@ const router = createBrowserRouter([
         path: "/Wishlist",
         element: <Wishlist />,
       },
-
+      {
+        path: "Cart/Checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "Cart/Checkout/OrderMessage",
+        element: <PlaceOrderMessage />,
+      },
       {
         path: "/MyAccount",
         element: <Account />,

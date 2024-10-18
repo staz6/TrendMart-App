@@ -1,8 +1,8 @@
 import React from "react";
 import Wrapper from "../components/compound/Wrapper";
-import CheckoutSection from "../components/complex/CheckoutSection";
 import Cart from "../components/complex/Cart";
 import { Link } from "react-router-dom";
+import MiniCheckoutCart from "../components/complex/MiniCheckoutCart";
 
 const ViewCart: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const ViewCart: React.FC = () => {
         <span className="text-black">Cart</span>
       </h1>
       <Cart />
-      <CheckoutSection />
+      <MiniCheckoutCart />
     </Wrapper>
   );
 };

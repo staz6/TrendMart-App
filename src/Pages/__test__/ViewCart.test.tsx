@@ -15,6 +15,6 @@ describe("ViewCart Component", () => {
     );
     expect(screen.getByTestId("PageDirectory"));
     expect(screen.getByTestId("CartSection"));
-    expect(screen.getByTestId("CheckoutSection"));
+    expect(screen.getByTestId("MiniCheckoutCart"));
   });
 });
