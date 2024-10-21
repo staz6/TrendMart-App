@@ -8,7 +8,6 @@ import Wishlist from "./Pages/Wishlist";
 import { CartProvider } from "./components/Context/CartContext";
 import { AuthProvider } from "./components/Context/UserAuthContext";
 import { WishlistProvider } from "./components/Context/WishlistContext";
-
 import Layout from "./components/Layout/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OrderHistory from "./components/complex/OrderHistory";
@@ -17,6 +16,10 @@ import Account from "./Pages/Account";
 import Checkout from "./Pages/Checkout";
 import { PlaceOrderMessage } from "./components/compound/PlaceOrderMessage";
 import Product from "./Pages/Product";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CategoryProduct } from "./Pages/CategoryProduct";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -61,6 +64,10 @@ const router = createBrowserRouter([
         element: <Product />,
       },
       {
+        path: "/categoryProducts/:category",
+        element: <CategoryProduct />,
+      },
+      {
         path: "/MyAccount",
         element: <Account />,
         children: [
@@ -79,7 +86,7 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <CartProvider>
           <WishlistProvider>
@@ -87,7 +94,7 @@ function App() {
           </WishlistProvider>
         </CartProvider>
       </AuthProvider>
-    </>
+    </QueryClientProvider>
   );
 }
 

@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className="w-72 h-auto text-text2 font-poppins">
+    <div key={id} className="w-72 h-auto text-text2 font-poppins mb-5">
       <div
         onClick={handleCardClick}
         data-testid="ProductCardImage"
