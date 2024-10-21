@@ -8,6 +8,7 @@ import starEmpty from "../../assets/starEmpty.svg";
 import { useCart } from "../Context/CartContext";
 import { IoTrashOutline } from "react-icons/io5";
 import { useWishlist } from "../Context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   id: string;
@@ -34,15 +35,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const [hover, setHover] = useState(false);
   const originalPrice = (price * (100 - discount)) / 100;
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   const { addToWishlist, wishlistItems, removeFromWishlist } = useWishlist();
   const inWishlist = wishlistItems.find((item) => item.id === id);
+  const handleCardClick = () => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <div className="w-72 h-auto text-text2 font-poppins">
       <div
+        onClick={handleCardClick}
         data-testid="ProductCardImage"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        className="bg-secondary relative flex justify-center p-5 py-12 overflow-y-hidden"
+        className="bg-secondary cursor-pointer relative flex justify-center p-5 py-12 overflow-y-hidden"
       >
         {discount != 0 && !New && (
           <h1 className="absolute top-3 left-3 bg-button2 text-secondary px-4 text-sm py-[0.35rem] rounded-[0.3rem]">
@@ -114,7 +121,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </AnimatePresence>
         <img src={image} alt={title} className="object-contain h-40" />
       </div>
-      <h1 className="font-medium mt-4">{title}</h1>
+      <h1 onClick={handleCardClick} className="font-medium mt-4 cursor-pointer">
+        {title}
+      </h1>
       <h1 className="mt-2 font-medium mb-2 text-button2">
         ${price}
         {discount != 0 && (

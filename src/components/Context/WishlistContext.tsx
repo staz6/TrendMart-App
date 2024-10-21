@@ -18,7 +18,7 @@ interface WishlistContextType {
   moveAllToCart: () => void;
 }
 
-const WishlistContext = createContext<WishlistContextType | undefined>(
+export const WishlistContext = createContext<WishlistContextType | undefined>(
   undefined,
 );
 

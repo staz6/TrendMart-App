@@ -29,7 +29,7 @@ const ActionPanel: React.FC = () => {
         className="relative hover:-translate-y-1 duration-200 transition-all"
         to="/Wishlist"
       >
-        <img className="w-6 h-6" src={Heart} alt="Cart" />
+        <img className="w-7 h-8" src={Heart} alt="Cart" />
         <AnimatePresence>
           {wishlistItems.length > 0 && (
             <motion.h1
