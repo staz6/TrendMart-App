@@ -22,6 +22,7 @@
   --color-button: #000000;
   --color-button1: #00ff66;
   --color-button2: #db4444;
+  --color-button3: #ffad33;
   --color-hoverbutton1: #e07575;
   --color-hoverbutton2: #a0bce0;
   background-color: var(--color-bg);

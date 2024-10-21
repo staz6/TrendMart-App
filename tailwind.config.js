@@ -27,6 +27,7 @@ export default {
         button: "var(--color-button)",
         button1: "var(--color-button1)",
         button2: "var(--color-button2)",
+        button3: "var(--color-button3)",
         hoverbutton1: "var(--color-hoverbutton1)",
         hoverbutton2: "var(--color-hoverbutton2)",
       },

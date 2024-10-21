@@ -96,7 +96,7 @@ const MiniCheckoutCart: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="w-96 m-auto shadow-CustomBoxShadow py-10 mb-10 ">
+        <div className="sm:w-96 m-auto shadow-CustomBoxShadow py-10 mb-10 ">
           <h1 className="text-2xl text-center text-black m-auto font-poppins">
             No Items In The Cart
           </h1>

@@ -16,6 +16,7 @@ import MyProfile from "./components/complex/MyProfile";
 import Account from "./Pages/Account";
 import Checkout from "./Pages/Checkout";
 import { PlaceOrderMessage } from "./components/compound/PlaceOrderMessage";
+import Product from "./Pages/Product";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "Cart/Checkout/OrderMessage",
         element: <PlaceOrderMessage />,
+      },
+      {
+        path: "/Product/:id",
+        element: <Product />,
       },
       {
         path: "/MyAccount",
