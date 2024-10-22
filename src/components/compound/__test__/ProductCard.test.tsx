@@ -21,9 +21,6 @@ describe("ProductCard Component", () => {
             price={100}
             discount={20}
             rating={3}
-            onAddToCart={mockAddToCart}
-            onWishlist={mockWishlist}
-            onViewDetails={mockViewDetails}
             New={false}
           />
         </WishlistProvider>

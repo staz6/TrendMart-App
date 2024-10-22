@@ -6,7 +6,7 @@ import Product from "../../Pages/Product";
 import ProductCard from "../compound/ProductCard";
 import SkeletonLoader from "../compound/SkeletonLoader";
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -60,9 +60,6 @@ const ProductOfCategory: React.FC = () => {
           price={product.price}
           discount={0}
           rating={product.rating.rate}
-          onAddToCart={() => console.log("Add to cart")}
-          onWishlist={() => console.log("Add to wishlist")}
-          onViewDetails={() => console.log("View details")}
         />
       ))}
     </>

@@ -30,9 +30,6 @@ const WishlistSection: React.FC = () => {
             discount={item.discount ?? 0}
             rating={item.rating ?? 0}
             New={item.New}
-            onAddToCart={() => console.log("Added to cart")}
-            onWishlist={() => console.log("Added to wishlist")}
-            onViewDetails={() => console.log("View details")}
           />
         ))}
       </div>

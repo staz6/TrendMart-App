@@ -50,6 +50,7 @@ describe("Section component", () => {
   it("renders the section title and slider title", () => {
     render(
       <Section
+        slider
         showPagination={false}
         sectionTitle={sectionTitle}
         sliderTitle={sliderTitle}
@@ -73,6 +74,7 @@ describe("Section component", () => {
         sectionTitle={sectionTitle}
         sliderTitle={sliderTitle}
         showTimer={true}
+        slider
       >
         <div>Product Card 1</div>
         <div>Product Card 2</div>
@@ -86,6 +88,7 @@ describe("Section component", () => {
   it("renders the slider controls and content", () => {
     render(
       <Section
+        slider
         showPagination
         sectionTitle={sectionTitle}
         sliderTitle={sliderTitle}
@@ -108,6 +111,7 @@ describe("Section component", () => {
 
     render(
       <Section
+        slider
         showPagination={false}
         sectionTitle={sectionTitle}
         sliderTitle={sliderTitle}

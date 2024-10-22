@@ -1,10 +1,28 @@
 import React from "react";
 import ProductCard from "../compound/ProductCard";
-import productImage from "../../assets/productImage.png";
 import Section from "./Section";
-import { v4 as uuidv4 } from "uuid";
+import { Product } from "./ProductOfCategory";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import SkeletonLoader from "../compound/SkeletonLoader";
 
-const FlashSalesSection: React.FC = () => {
+type SectionProps = {
+  slider?: boolean;
+};
+
+const FlashSalesSection: React.FC<SectionProps> = ({ slider = true }) => {
+  const fetchSalesProducts = async (): Promise<Product[]> => {
+    const { data } = await axios.get<Product[]>(
+      "https://fakestoreapi.com/products?limit=10",
+    );
+    return data;
+  };
+
+  const { data, isLoading, error } = useQuery<Product[]>({
+    queryKey: ["SalesProducts"],
+    queryFn: fetchSalesProducts,
+  });
+
   return (
     <Section
       sectionTitle="Today's"
@@ -12,21 +30,32 @@ const FlashSalesSection: React.FC = () => {
       sliderTitle="Flash Sales"
       showTimer
       testId="FlashSales"
+      slider={slider}
     >
-      {Array.from({ length: 6 }).map((_, index) => (
-        <ProductCard
-          key={index}
-          image={productImage}
-          title="HAVIT HV-G92 Gamepad"
-          price={120}
-          discount={40}
-          id={uuidv4()}
-          rating={4}
-          onAddToCart={() => console.log("Added to cart")}
-          onWishlist={() => console.log("Added to wishlist")}
-          onViewDetails={() => console.log("View details")}
-        />
-      ))}
+      {isLoading ? (
+        Array.from({ length: 6 }).map((_, index) => (
+          <SkeletonLoader key={index}>
+            <div
+              data-testid="ProductSkeleton"
+              className="h-72 w-72   border bg-gray-300"
+            />
+          </SkeletonLoader>
+        ))
+      ) : error ? (
+        <p className="text-2xl text-button2">Error loading products.</p>
+      ) : (
+        data?.map((product) => (
+          <ProductCard
+            key={product.id}
+            id={`${product.id}`}
+            image={product.image}
+            title={product.title}
+            price={product.price}
+            discount={35}
+            rating={product.rating.rate}
+          />
+        ))
+      )}
     </Section>
   );
 };

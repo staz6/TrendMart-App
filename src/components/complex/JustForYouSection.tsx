@@ -31,9 +31,6 @@ const JustForYouSection: React.FC = () => {
             id={uuidv4()}
             discount={40}
             rating={4}
-            onAddToCart={() => console.log("Added to cart")}
-            onWishlist={() => console.log("Added to wishlist")}
-            onViewDetails={() => console.log("View details")}
           />
         ))}
       </div>
