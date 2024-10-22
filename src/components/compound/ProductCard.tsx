@@ -17,9 +17,6 @@ interface ProductCardProps {
   price: number;
   discount: number;
   rating: number;
-  onAddToCart: () => void;
-  onWishlist: () => void;
-  onViewDetails: () => void;
   New?: boolean;
 }
 
@@ -43,7 +40,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div key={id} className="w-72 h-auto text-text2 font-poppins mb-5">
+    <div
+      data-testid="ProductCard"
+      key={id}
+      className="w-72 h-auto text-text2 font-poppins mb-5"
+    >
       <div
         onClick={handleCardClick}
         data-testid="ProductCardImage"
@@ -125,9 +126,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {title}
       </h1>
       <h1 className="mt-2 font-medium mb-2 text-button2">
-        ${price}
+        ${price.toFixed(2)}
         {discount != 0 && (
-          <span className="text-text1 ml-2 line-through">${originalPrice}</span>
+          <span className="text-text1 ml-2 line-through">
+            ${originalPrice.toFixed(2)}
+          </span>
         )}
       </h1>
       <div className="flex items-center gap-1">

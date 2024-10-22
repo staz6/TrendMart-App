@@ -18,6 +18,7 @@ import { PlaceOrderMessage } from "./components/compound/PlaceOrderMessage";
 import Product from "./Pages/Product";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CategoryProduct } from "./Pages/CategoryProduct";
+import AllProducts from "./Pages/AllProducts";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/categoryProducts/:category",
         element: <CategoryProduct />,
+      },
+      {
+        path: "/:section",
+        element: <AllProducts />,
       },
       {
         path: "/MyAccount",

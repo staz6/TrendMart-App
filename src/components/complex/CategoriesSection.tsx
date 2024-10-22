@@ -7,6 +7,7 @@ import Section from "./Section";
 export const CategoriesSection: React.FC = () => {
   return (
     <Section
+      slider
       breakpoints={{
         0: { slidesPerView: 1 },
         640: { slidesPerView: 4 },

@@ -6,9 +6,10 @@ import SectionTitle from "../compound/SectionTitle";
 import SectionSliderControls from "./../compound/SectionSliderControls";
 import SectionSliderContent from "../compound/SectionSliderContent";
 import Button from "../shared/Button";
+import { useNavigate } from "react-router-dom";
 
 interface SectionProps {
-  children: ReactNode[];
+  children: ReactNode[] | ReactNode;
   sectionTitle: string;
   sliderTitle: string;
   showTimer: boolean;
@@ -21,6 +22,7 @@ interface SectionProps {
     };
   };
   loop?: boolean;
+  slider: boolean;
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -30,6 +32,7 @@ const Section: React.FC<SectionProps> = ({
   showTimer,
   showPagination,
   spaceBetween = 10,
+  slider = true,
   breakpoints = {
     0: { slidesPerView: 1 },
     640: { slidesPerView: 2 },
@@ -41,9 +44,9 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
-
+  const navigate = useNavigate();
   return (
-    <div data-testid={testId} className=" margin-auto  ">
+    <div data-testid={testId} className=" margin-auto mt-20 ">
       <SectionTitle title={sectionTitle} />
       <div className="flex sm:flex-row flex-col justify-between items-center mb-8">
         <div className="flex sm:flex-row my-5 md:mt-0 flex-col sm:items-end text-text2 gap-5 sm:gap-14 md:gap-20 ">
@@ -52,23 +55,32 @@ const Section: React.FC<SectionProps> = ({
           </h1>
           {showTimer ? <CountdownTimer /> : <div className="sm:mt-14"></div>}
         </div>
-        <SectionSliderControls prevRef={prevRef} nextRef={nextRef} />
+        {slider && (
+          <SectionSliderControls prevRef={prevRef} nextRef={nextRef} />
+        )}
       </div>
 
-      <SectionSliderContent
-        loop={loop}
-        spaceBetween={spaceBetween}
-        breakpoints={breakpoints}
-        prevRef={prevRef}
-        nextRef={nextRef}
-      >
-        {children}
-      </SectionSliderContent>
-      {showPagination && (
-        <div className="flex justify-center mt-14 mb-10">
+      {slider ? (
+        <SectionSliderContent
+          loop={loop}
+          spaceBetween={spaceBetween}
+          breakpoints={breakpoints}
+          prevRef={prevRef}
+          nextRef={nextRef}
+        >
+          {children}
+        </SectionSliderContent>
+      ) : (
+        <div className="flex flex-wrap gap-9 justify-center sm:justify-normal">
+          {children}
+        </div>
+      )}
+
+      {showPagination && slider && (
+        <div className="flex justify-center mt-8 mb-10">
           <Button
             className="capital bg-button2 px-10 p-3 rounded-[0.25rem] hover:bg-transparent hover:text-button2 border transition-all duration-300 border-button2 "
-            onClick={() => {}}
+            onClick={() => navigate(`/${sliderTitle}`)}
             icon=""
             testid="paginationProductsSection"
             description="View All Products"

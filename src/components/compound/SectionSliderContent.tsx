@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 interface SectionSliderContentProps {
-  children: ReactNode[];
+  children: ReactNode[] | ReactNode;
   prevRef: RefObject<HTMLButtonElement>;
   nextRef: RefObject<HTMLButtonElement>;
   spaceBetween?: number;
@@ -47,7 +47,7 @@ const SectionSliderContent: React.FC<SectionSliderContentProps> = ({
         }}
         className="flex"
       >
-        {children.map((item, index) => (
+        {React.Children.toArray(children).map((item, index) => (
           <SwiperSlide
             key={index}
             className="flex justify-center sm:justify-normal"

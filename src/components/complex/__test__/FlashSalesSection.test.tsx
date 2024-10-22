@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import ExploreOurProducts from "../ExploreOurProducts";
+import FlashSalesSection from "../FlashSalesSection";
 import "@testing-library/jest-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -24,7 +24,7 @@ beforeAll(() => {
 });
 
 let queryClient: QueryClient;
-describe("ExploreOurProducts section tests", () => {
+describe("FlashSalesSection section tests", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     queryClient = new QueryClient();
@@ -32,7 +32,7 @@ describe("ExploreOurProducts section tests", () => {
   it("Testing skeleton loading", () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ExploreOurProducts />
+        <FlashSalesSection />
       </QueryClientProvider>,
     );
     expect(screen.getAllByTestId("ProductSkeleton")).toHaveLength(6);
@@ -40,11 +40,11 @@ describe("ExploreOurProducts section tests", () => {
   it("Testing rendering of ui", async () => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ExploreOurProducts />
+        <FlashSalesSection />
       </QueryClientProvider>,
     );
-    expect(screen.getByText("Our Products")).toBeInTheDocument();
-    expect(screen.getByText("Explore Our Products")).toBeInTheDocument();
+    expect(screen.getByText("Today's")).toBeInTheDocument();
+    expect(screen.getByText("Flash Sales")).toBeInTheDocument();
     waitFor(() => {
       const productCards = screen.getAllByTestId("ProductCard");
       expect(productCards).toHaveLength(10);
