@@ -3,22 +3,22 @@ import Section from "./Section";
 import ProductCard from "../compound/ProductCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Product } from "./ProductOfCategory";
 import SkeletonLoader from "../compound/SkeletonLoader";
+import { ProductType } from "../../Pages/Product";
 
 type SectionProps = {
   slider?: boolean;
 };
 
 const BestSellingSection: React.FC<SectionProps> = ({ slider = true }) => {
-  const fetchBestSellingProducts = async (): Promise<Product[]> => {
-    const { data } = await axios.get<Product[]>(
+  const fetchBestSellingProducts = async (): Promise<ProductType[]> => {
+    const { data } = await axios.get<ProductType[]>(
       "https://fakestoreapi.com/products?limit=15",
     );
     return data;
   };
 
-  const { data, isLoading, error } = useQuery<Product[]>({
+  const { data, isLoading, error } = useQuery<ProductType[]>({
     queryKey: ["SalesProducts"],
     queryFn: fetchBestSellingProducts,
   });

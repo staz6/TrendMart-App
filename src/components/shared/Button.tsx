@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 
 export interface ButtonProps {
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   icon: React.ReactNode | null;
   className: string;
   description: string;
