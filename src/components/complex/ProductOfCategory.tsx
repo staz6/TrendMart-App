@@ -2,32 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
-import Product from "../../Pages/Product";
 import ProductCard from "../compound/ProductCard";
 import SkeletonLoader from "../compound/SkeletonLoader";
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { ProductType } from "../../Pages/Product";
 
 const ProductOfCategory: React.FC = () => {
   const { category } = useParams();
 
-  const fetchCategoryProducts = async (): Promise<Product[]> => {
-    const { data } = await axios.get<Product[]>(
+  const fetchCategoryProducts = async (): Promise<ProductType[]> => {
+    const { data } = await axios.get<ProductType[]>(
       `https://fakestoreapi.com/products/category/${category}`,
     );
     return data;
   };
 
-  const { data, isLoading, error } = useQuery<Product[]>({
+  const { data, isLoading, error } = useQuery<ProductType[]>({
     queryKey: ["CategoryProducts", category],
     queryFn: fetchCategoryProducts,
   });
@@ -35,9 +24,7 @@ const ProductOfCategory: React.FC = () => {
   if (error) {
     return <p>Error loading products</p>;
   }
-  if (data) {
-    console.log(data);
-  }
+
   return (
     <>
       {isLoading && (
@@ -54,6 +41,7 @@ const ProductOfCategory: React.FC = () => {
       )}
       {data?.map((product) => (
         <ProductCard
+          key={product.id}
           id={`${product.id}`}
           image={product.image}
           title={product.title}

@@ -30,13 +30,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
   New = false,
 }) => {
   const [hover, setHover] = useState(false);
-  const originalPrice = (price * (100 - discount)) / 100;
+  const SalePrice = (price * (100 - discount)) / 100;
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const { addToWishlist, wishlistItems, removeFromWishlist } = useWishlist();
   const inWishlist = wishlistItems.find((item) => item.id === id);
   const handleCardClick = () => {
-    navigate(`/product/${id}`);
+    if (discount) {
+      navigate(`/FlashSalesProduct/${id}`);
+    } else {
+      navigate(`/product/${id}`);
+    }
   };
 
   return (
@@ -111,9 +115,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
             >
               <Button
                 className="hover:bg-button2 transition-all duration-200 text-text py-2 bg-text2 w-full"
-                onClick={() =>
-                  addToCart({ title: title, price: price, id: id })
-                }
+                onClick={(event) => {
+                  event?.stopPropagation();
+                  addToCart({ title: title, price: price, id: id });
+                }}
                 icon=""
                 description="Add To Cart"
               />
@@ -126,10 +131,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {title}
       </h1>
       <h1 className="mt-2 font-medium mb-2 text-button2">
-        ${price.toFixed(2)}
+        ${discount != 0 ? SalePrice.toFixed(2) : price.toFixed(2)}
         {discount != 0 && (
           <span className="text-text1 ml-2 line-through">
-            ${originalPrice.toFixed(2)}
+            ${price.toFixed(2)}
           </span>
         )}
       </h1>

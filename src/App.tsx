@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         element: <PlaceOrderMessage />,
       },
       {
-        path: "/Product/:id",
+        path: "/:ProductType/:Id",
         element: <Product />,
       },
       {
