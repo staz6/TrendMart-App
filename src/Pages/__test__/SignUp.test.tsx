@@ -2,13 +2,16 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom"; // Import MemoryRouter to mock routing
 import "@testing-library/jest-dom";
 import SignUp from "../SignUp";
+import { AuthProvider } from "../../components/Context/UserAuthContext";
 
 describe("SignUp component Tests", () => {
   it("Testing rendering of LogIn ui", () => {
     render(
-      <MemoryRouter>
-        <SignUp />
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter>
+          <SignUp />
+        </MemoryRouter>
+      </AuthProvider>,
     );
 
     expect(screen.getByText("Create an account")).toBeInTheDocument();
@@ -24,9 +27,11 @@ describe("SignUp component Tests", () => {
   });
   it("Testing Account Creation ", () => {
     render(
-      <MemoryRouter>
-        <SignUp />
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter>
+          <SignUp />
+        </MemoryRouter>
+      </AuthProvider>,
     );
     fireEvent.change(screen.getByPlaceholderText("Name"), {
       target: { value: "John Doe" },

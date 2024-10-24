@@ -21,7 +21,7 @@ const CheckoutSection: React.FC<CheckoutSectionType> = ({ filledForm }) => {
   const [selectedPayment, setSelectedPayment] = useState<
     "Bank" | "CashOnDelivery"
   >("Bank");
-  const { cartItems } = useCart();
+  const { cartItems, setCartItems } = useCart();
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.qty,
     0,
@@ -42,6 +42,7 @@ const CheckoutSection: React.FC<CheckoutSectionType> = ({ filledForm }) => {
       localStorage.setItem("order", JSON.stringify(orderDetails));
 
       window.alert("Order placed successfully");
+      setCartItems([]);
       navigate("OrderMessage");
     } else {
       window.alert("Please fill all the form fields");

@@ -5,7 +5,13 @@ import CheckoutSection from "../CheckoutSection";
 import { CartContext } from "../../Context/CartContext";
 
 const mockCartItems = [
-  { id: "1", title: "HAVIT HV-G92 Gamepad", price: 20, qty: 2 },
+  {
+    id: "1",
+    title: "HAVIT HV-G92 Gamepad",
+    price: 20,
+    qty: 2,
+    image: "TestImage",
+  },
 ];
 
 const mockNavigate = jest.fn();
@@ -25,6 +31,7 @@ describe("CheckoutSection", () => {
       <Router>
         <CartContext.Provider
           value={{
+            setCartItems() {},
             cartItems: mockCartItems,
             updateQuantity() {},
             removeFromCart() {},
@@ -45,6 +52,7 @@ describe("CheckoutSection", () => {
       <Router>
         <CartContext.Provider
           value={{
+            setCartItems() {},
             cartItems: mockCartItems,
             updateQuantity() {},
             removeFromCart() {},
@@ -69,6 +77,7 @@ describe("CheckoutSection", () => {
       <Router>
         <CartContext.Provider
           value={{
+            setCartItems() {},
             cartItems: mockCartItems,
             updateQuantity() {},
             removeFromCart() {},
@@ -95,6 +104,7 @@ describe("CheckoutSection", () => {
       <Router>
         <CartContext.Provider
           value={{
+            setCartItems() {},
             cartItems: mockCartItems,
             updateQuantity() {},
             removeFromCart() {},
@@ -120,6 +130,7 @@ describe("CheckoutSection", () => {
       <Router>
         <CartContext.Provider
           value={{
+            setCartItems() {},
             cartItems: mockCartItems,
             updateQuantity() {},
             removeFromCart() {},

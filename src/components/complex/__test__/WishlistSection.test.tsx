@@ -3,6 +3,7 @@ import { useWishlist } from "../../Context/WishlistContext";
 import "@testing-library/jest-dom";
 import WishlistSection from "../WishlistSection";
 import { CartProvider } from "../../Context/CartContext";
+import { MemoryRouter } from "react-router-dom";
 
 jest.mock("../../Context/WishlistContext", () => ({
   useWishlist: jest.fn(),
@@ -38,7 +39,9 @@ describe("WishlistSection", () => {
   it("renders WishlistSection with correct number of wishlist items", () => {
     render(
       <CartProvider>
-        <WishlistSection />
+        <MemoryRouter>
+          <WishlistSection />
+        </MemoryRouter>
       </CartProvider>,
     );
 
@@ -51,7 +54,9 @@ describe("WishlistSection", () => {
   it("calls moveAllToCart when 'Move All To Bag' button is clicked", () => {
     render(
       <CartProvider>
-        <WishlistSection />
+        <MemoryRouter>
+          <WishlistSection />
+        </MemoryRouter>
       </CartProvider>,
     );
 

@@ -3,6 +3,7 @@ import CheckoutSection from "../MiniCheckoutCart";
 import { useCart } from "../../Context/CartContext";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
+import { AuthProvider } from "../../Context/UserAuthContext";
 
 jest.mock("../../Context/CartContext", () => ({
   useCart: jest.fn(),
@@ -26,9 +27,11 @@ describe("CheckoutSection Component", () => {
 
   it("should render checkout totals correctly", () => {
     render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter>
+          <CheckoutSection />
+        </MemoryRouter>
+      </AuthProvider>,
     );
     expect(screen.getByText("Free")).toBeInTheDocument();
     expect(screen.getAllByText("$1100")).toHaveLength(2);
@@ -36,9 +39,11 @@ describe("CheckoutSection Component", () => {
 
   it('should display the "Return To Shop" link', () => {
     render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter>
+          <CheckoutSection />
+        </MemoryRouter>
+      </AuthProvider>,
     );
 
     const returnLink = screen.getByText("Return To Shop");
@@ -51,17 +56,21 @@ describe("CheckoutSection Component", () => {
     });
 
     render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter>
+          <CheckoutSection />
+        </MemoryRouter>
+      </AuthProvider>,
     );
     expect(screen.getByText("No Items In The Cart")).toBeInTheDocument();
   });
   it("should allow typing and applying a coupon code", () => {
     render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter>
+          <CheckoutSection />
+        </MemoryRouter>
+      </AuthProvider>,
     );
 
     const couponInput = screen.getByPlaceholderText("Coupon Code");
@@ -74,9 +83,11 @@ describe("CheckoutSection Component", () => {
 
   it("should proceed to checkout", () => {
     render(
-      <MemoryRouter>
-        <CheckoutSection />
-      </MemoryRouter>,
+      <AuthProvider>
+        <MemoryRouter>
+          <CheckoutSection />
+        </MemoryRouter>
+      </AuthProvider>,
     );
     const checkoutButton = screen.getByText("Proceed To Checkout");
     fireEvent.click(checkoutButton);

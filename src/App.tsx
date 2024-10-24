@@ -19,6 +19,7 @@ import Product from "./Pages/Product";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CategoryProduct } from "./Pages/CategoryProduct";
 import AllProducts from "./Pages/AllProducts";
+import BrowseByCategoryProducts from "./Pages/BrowseByCategoryProducts";
 
 const queryClient = new QueryClient();
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/categoryProducts/:category",
         element: <CategoryProduct />,
+      },
+      {
+        path: "/BrowseByCategory/:category",
+        element: <BrowseByCategoryProducts />,
       },
       {
         path: "/:section",

@@ -110,6 +110,7 @@ describe("DetailedProduct Component", () => {
     render(
       <CartContext.Provider
         value={{
+          setCartItems() {},
           addToCart: mockAddToCart,
           cartItems: [],
           updateQuantity() {},
@@ -131,6 +132,7 @@ describe("DetailedProduct Component", () => {
     expect(mockAddToCart).toHaveBeenCalledWith({
       title: "Test Product",
       price: 100,
+      image: "testImage",
       id: "1",
       qty: 1,
     });
