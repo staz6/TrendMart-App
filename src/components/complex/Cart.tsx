@@ -4,7 +4,6 @@ import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import Button from "../shared/Button";
 import { useCart } from "../Context/CartContext";
-import Monitor from "../../assets/Monitor.svg";
 
 const Cart: React.FC = () => {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
@@ -32,7 +31,7 @@ const Cart: React.FC = () => {
               className="md:px-10 pl-2 md:pl:0 text-center py-4 items-center shadow-CustomBoxShadow my-10 font-poppins text-black  grid grid-cols-12 justify-between"
             >
               <div className="col-span-3 text-sm sm:text-base relative m-auto flex flex-col sm:flex-row items-center gap-5">
-                <img src={Monitor} alt={item.title} />
+                <img src={item.image} className="w-12 h-12" alt={item.title} />
                 <h1>{item.title}</h1>
                 <AnimatePresence>
                   {removeBtn && (

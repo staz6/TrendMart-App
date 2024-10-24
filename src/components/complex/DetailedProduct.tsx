@@ -203,6 +203,7 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
                     : data?.price,
                 id: `${data.id}`,
                 qty: quantity,
+                image: data.image,
               })
             }
             className="bg-red-500 sm:text-base text-sm py-[0.65rem]  text-white px-6 xl:px-10 sm:py-2 rounded hover:bg-red-600 transition"

@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Section from "../Section";
 import "@testing-library/jest-dom";
+import { MemoryRouter } from "react-router-dom";
 
 jest.mock("swiper/css", () => {});
 jest.mock("swiper/css/navigation", () => {});
@@ -49,16 +50,18 @@ describe("Section component", () => {
 
   it("renders the section title and slider title", () => {
     render(
-      <Section
-        slider
-        showPagination={false}
-        sectionTitle={sectionTitle}
-        sliderTitle={sliderTitle}
-        showTimer={false}
-      >
-        <div>Product Card 1</div>
-        <div>Product Card 2</div>
-      </Section>,
+      <MemoryRouter>
+        <Section
+          slider
+          showPagination={false}
+          sectionTitle={sectionTitle}
+          sliderTitle={sliderTitle}
+          showTimer={false}
+        >
+          <div>Product Card 1</div>
+          <div>Product Card 2</div>
+        </Section>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText(sectionTitle)).toBeInTheDocument();
@@ -69,16 +72,18 @@ describe("Section component", () => {
 
   it("renders the CountdownTimer when showTimer and showPagination is true", () => {
     render(
-      <Section
-        showPagination
-        sectionTitle={sectionTitle}
-        sliderTitle={sliderTitle}
-        showTimer={true}
-        slider
-      >
-        <div>Product Card 1</div>
-        <div>Product Card 2</div>
-      </Section>,
+      <MemoryRouter>
+        <Section
+          showPagination
+          sectionTitle={sectionTitle}
+          sliderTitle={sliderTitle}
+          showTimer={true}
+          slider
+        >
+          <div>Product Card 1</div>
+          <div>Product Card 2</div>
+        </Section>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText("Countdown Timer")).toBeInTheDocument();
@@ -87,16 +92,18 @@ describe("Section component", () => {
 
   it("renders the slider controls and content", () => {
     render(
-      <Section
-        slider
-        showPagination
-        sectionTitle={sectionTitle}
-        sliderTitle={sliderTitle}
-        showTimer={false}
-      >
-        <div>Product Card 1</div>
-        <div>Product Card 2</div>
-      </Section>,
+      <MemoryRouter>
+        <Section
+          slider
+          showPagination
+          sectionTitle={sectionTitle}
+          sliderTitle={sliderTitle}
+          showTimer={false}
+        >
+          <div>Product Card 1</div>
+          <div>Product Card 2</div>
+        </Section>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText("Slider Controls")).toBeInTheDocument();
@@ -110,19 +117,21 @@ describe("Section component", () => {
     };
 
     render(
-      <Section
-        slider
-        showPagination={false}
-        sectionTitle={sectionTitle}
-        sliderTitle={sliderTitle}
-        showTimer={false}
-        spaceBetween={20}
-        breakpoints={customBreakpoints}
-        loop={false}
-      >
-        <div>Product Card 1</div>
-        <div>Product Card 2</div>
-      </Section>,
+      <MemoryRouter>
+        <Section
+          slider
+          showPagination={false}
+          sectionTitle={sectionTitle}
+          sliderTitle={sliderTitle}
+          showTimer={false}
+          spaceBetween={20}
+          breakpoints={customBreakpoints}
+          loop={false}
+        >
+          <div>Product Card 1</div>
+          <div>Product Card 2</div>
+        </Section>
+      </MemoryRouter>,
     );
 
     expect(screen.getByTestId("spaceBetween")).toHaveTextContent("20");

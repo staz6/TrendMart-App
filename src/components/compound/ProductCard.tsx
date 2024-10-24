@@ -117,7 +117,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 className="hover:bg-button2 transition-all duration-200 text-text py-2 bg-text2 w-full"
                 onClick={(event) => {
                   event?.stopPropagation();
-                  addToCart({ title: title, price: price, id: id });
+                  addToCart({
+                    title: title,
+                    price: price,
+                    id: id,
+                    image: image,
+                  });
                 }}
                 icon=""
                 description="Add To Cart"

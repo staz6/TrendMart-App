@@ -4,6 +4,7 @@ interface OrderItem {
   title: string;
   price: number;
   qty: number;
+  image: string;
 }
 
 interface OrderDetails {
@@ -45,7 +46,9 @@ const OrderHistory: React.FC = () => {
             className="flex justify-between items-center py-3 border-b border-gray-200"
           >
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-gray-200 rounded-lg"></div>
+              <div className="w-16 h-16 bg-gray-200 rounded-lg">
+                <img className="w-full h-full " src={item.image} alt="" />
+              </div>
               <div>
                 <p className="font-medium ">{item.title}</p>
                 <p className="text-sm text-gray-500">Quantity: {item.qty}</p>

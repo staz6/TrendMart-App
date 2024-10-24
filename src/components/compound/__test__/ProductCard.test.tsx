@@ -15,6 +15,7 @@ describe("ProductCard Component", () => {
     render(
       <CartContext.Provider
         value={{
+          setCartItems() {},
           addToCart: mockAddToCart,
           cartItems: [],
           removeFromCart() {},
