@@ -80,6 +80,10 @@
   align-items: center;
 }
 
+.hero {
+  background-image: url("/src/assets/HeroBackgroundImage1.svg");
+}
+
 @media (min-width: 1600px) {
   :root {
     font-size: 1vw;

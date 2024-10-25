@@ -1,6 +1,6 @@
 import PromoBannerTimer from "../compound/PromoBannerTimer";
 import bannerImage from "../../assets/speaker.svg";
-import Button from "../shared/Button";
+import { Link } from "react-router-dom";
 
 const PromoBanner: React.FC = () => {
   return (
@@ -20,13 +20,12 @@ const PromoBanner: React.FC = () => {
 
             <PromoBannerTimer />
 
-            <Button
+            <Link
+              to="/CustomProduct/LoudSpeaker"
               className="capital w-fit mt-5 bg-button1 px-10 p-3 rounded-[0.25rem] hover:bg-transparent hover:text-text border transition-all duration-300 border-button1 "
-              onClick={() => {}}
-              icon=""
-              testid=""
-              description="Buy Now!"
-            />
+            >
+              Buy Now!
+            </Link>
           </div>
         </div>
 

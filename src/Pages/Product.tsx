@@ -5,9 +5,10 @@ import DetailedProduct from "../components/complex/DetailedProduct";
 import RelatedItem from "../components/complex/RelatedItem";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { mockProducts } from "../mockProductData";
 
 export interface ProductType {
-  id: number;
+  id: number | string;
   title: string;
   price: number;
   image: string;
@@ -25,7 +26,7 @@ type ParamsType = {
 
 const Product: React.FC = () => {
   const { Id } = useParams<ParamsType>();
-
+  const isIdNumber = !isNaN(Number(Id));
   const fetchDetailedProduct = async (): Promise<ProductType> => {
     const { data } = await axios.get<ProductType>(
       `https://fakestoreapi.com/products/${Id}`,
@@ -36,14 +37,17 @@ const Product: React.FC = () => {
   const { data, isLoading, error } = useQuery<ProductType>({
     queryKey: ["DetailedProduct", Id],
     queryFn: fetchDetailedProduct,
+    enabled: isIdNumber,
   });
-
+  const mockProduct = !isIdNumber
+    ? mockProducts.find((product) => product.id.toString() === Id)
+    : undefined;
   if (error) {
     return (
       <p className="text-center text-2xl text-button2">Error Loading Product</p>
     );
   }
-
+  const productData = isIdNumber ? data : mockProduct;
   return (
     <Wrapper>
       <h1
@@ -74,7 +78,7 @@ const Product: React.FC = () => {
                 ) : (
                   <img
                     className="w-[90%] h-[90%]"
-                    src={data?.image}
+                    src={productData?.image}
                     alt={`Product ${idx}`}
                   />
                 )}
@@ -88,17 +92,25 @@ const Product: React.FC = () => {
           {isLoading ? (
             <div className="bg-gray-300" />
           ) : (
-            <img src={data?.image} className="h-96" alt="Main Product" />
+            <img
+              src={productData?.image}
+              className="h-96 sm:h-[30rem]"
+              alt="Main Product"
+            />
           )}
         </div>
         <div
           data-testid="DetailedProductSection"
           className="col-span-12 md:col-span-6 order-2 lg:order-3 lg:col-span-5"
         >
-          <DetailedProduct data={data} isLoading={isLoading} error={error} />
+          <DetailedProduct
+            data={productData}
+            isLoading={isLoading}
+            error={error}
+          />
         </div>
       </div>
-      <RelatedItem category={data?.category} />
+      <RelatedItem category={productData?.category} />
     </Wrapper>
   );
 };

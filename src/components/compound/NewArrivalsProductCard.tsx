@@ -1,17 +1,17 @@
 import React from "react";
-import Button from "../shared/Button";
+import { Link } from "react-router-dom";
 
 interface Product {
   title: string;
   description: string;
   imageUrl: string;
-  onShopNow: () => void;
+  link: string;
 }
 const NewArrivalsProductCard: React.FC<Product> = ({
   title,
   description,
   imageUrl,
-  onShopNow,
+  link,
 }) => (
   <div
     data-testid="NewArrivalsProductCard"
@@ -31,12 +31,12 @@ const NewArrivalsProductCard: React.FC<Product> = ({
         className="text-sm my-[2%] md:text-[12px] lg:text-sm font-poppins font-[300]"
         dangerouslySetInnerHTML={{ __html: description }}
       />
-      <Button
-        icon=""
-        onClick={onShopNow}
-        description="Shop Now"
+      <Link
+        to={link}
         className="text-start hover:text-text1 transition-all duration-200  font-poppins font-normal border-b border-white w-fit border-opacity-50"
-      />
+      >
+        Shop Now
+      </Link>
     </div>
   </div>
 );
