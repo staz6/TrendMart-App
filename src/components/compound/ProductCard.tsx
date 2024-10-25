@@ -72,7 +72,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <Button
                 testid="wishList"
                 className="p-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
-                onClick={() =>
+                onClick={(e) => {
+                  e.stopPropagation();
                   addToWishlist({
                     id,
                     image,
@@ -81,8 +82,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     discount,
                     rating,
                     New,
-                  })
-                }
+                  });
+                }}
                 icon={<BiHeart size={22} />}
                 description=""
               />
