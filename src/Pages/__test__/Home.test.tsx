@@ -26,7 +26,7 @@ describe("Testing Home page component", () => {
         <MemoryRouter>
           <Home />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.getByTestId("HeroSection")).toBeInTheDocument();
     expect(screen.getByTestId("FlashSales")).toBeInTheDocument();

@@ -1,17 +1,22 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import NewArrivalsProductCard from "../NewArrivalsProductCard";
+import { MemoryRouter } from "react-router-dom";
 
 describe("ProductCard Component", () => {
-  const mockShopNow = jest.fn();
   const mockProduct = {
     title: "PlayStation 5",
     description: "Black and White version of the PS5<br/>coming out on sale.",
     imageUrl: "/path/to/ps5-image.png",
+    link: "/Testlink",
   };
 
   test("should render product title, description, and image", () => {
-    render(<NewArrivalsProductCard onShopNow={mockShopNow} {...mockProduct} />);
+    render(
+      <MemoryRouter>
+        <NewArrivalsProductCard {...mockProduct} />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByText("PlayStation 5")).toBeInTheDocument();
     expect(
@@ -22,10 +27,14 @@ describe("ProductCard Component", () => {
     expect(image).toHaveAttribute("src", "/path/to/ps5-image.png");
   });
 
-  test("Testing handle Shop now button functionality", () => {
-    render(<NewArrivalsProductCard onShopNow={mockShopNow} {...mockProduct} />);
-    const button = screen.getByText("Shop Now");
-    fireEvent.click(button);
-    expect(mockShopNow).toHaveBeenCalled();
+  test("should navigate to correct link when 'Shop Now' is clicked", () => {
+    render(
+      <MemoryRouter>
+        <NewArrivalsProductCard {...mockProduct} />
+      </MemoryRouter>,
+    );
+
+    const shopNowLink = screen.getByText("Shop Now");
+    expect(shopNowLink).toHaveAttribute("href", "/Testlink");
   });
 });
