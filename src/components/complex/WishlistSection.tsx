@@ -1,5 +1,4 @@
 import React from "react";
-import productImage from "../../assets/productImage.png";
 import { useWishlist } from "../Context/WishlistContext";
 import ProductCard from "../compound/ProductCard";
 import Button from "../shared/Button";
@@ -24,7 +23,7 @@ const WishlistSection: React.FC = () => {
           <ProductCard
             id={item.id}
             key={index}
-            image={productImage}
+            image={item.image}
             title={item.title}
             price={item.price}
             discount={item.discount ?? 0}

@@ -27,19 +27,7 @@ export const mockProducts: ProductType[] = [
       count: 1500,
     },
   },
-  {
-    id: 3,
-    title: "Sony WH-1000XM4 Wireless Headphones",
-    price: 349,
-    image: "https://example.com/sonyHeadphones.jpg",
-    category: "electronics",
-    description:
-      "Industry-leading noise-cancelling headphones with 30-hour battery life.",
-    rating: {
-      rate: 4.9,
-      count: 3000,
-    },
-  },
+
   {
     id: "Ps5",
     title: "PlayStation 5",

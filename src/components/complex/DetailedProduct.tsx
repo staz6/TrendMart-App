@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiMinus, HiPlus } from "react-icons/hi";
 import Button from "../shared/Button";
@@ -21,8 +21,7 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
   isLoading,
   error,
 }) => {
-  const { ProductType, id } = useParams();
-  console.log(ProductType);
+  const { ProductType } = useParams();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("blue");
@@ -49,10 +48,7 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
     setSelectedSize(size);
   }, []);
 
-  const inWishlist = useMemo(
-    () => wishlistItems.some((item) => item.id === id),
-    [wishlistItems, id],
-  );
+  const inWishlist = wishlistItems.find((item) => item.id === `${data?.id}`);
 
   if (error) {
     return (
@@ -215,8 +211,8 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
             <Button
               onClick={() =>
                 addToWishlist({
-                  id: `${id}`,
-                  image: "",
+                  id: `${data.id}`,
+                  image: data.image,
                   title: data.title,
                   price: data.price,
                   discount: 0,
@@ -224,14 +220,14 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
                   New: false,
                 })
               }
-              className="border border-black border-opacity-50 p-2 rounded hover:bg-button2 hover:border-button2 hover:text-white transition-all duration-200"
+              className="border border-black border-opacity-50  p-2 rounded hover:bg-button2 hover:border-button2 hover:text-white transition-all duration-200"
               description=""
               icon={<AiOutlineHeart size={24} />}
             />
           ) : (
             <Button
-              onClick={() => removeFromWishlist(`${id}`)}
-              className="p-2 hover:bg-button2 hover:scale-110 transition-all duration-300 hover:text-white bg-white rounded-full"
+              onClick={() => removeFromWishlist(`${data.id}`)}
+              className="p-2 border border-black border-opacity-50  rounded hover:bg-button2 hover:border-button2 transition-all duration-300 hover:text-white bg-white "
               icon={<IoTrashOutline size={24} />}
               description=""
             />

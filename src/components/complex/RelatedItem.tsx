@@ -49,6 +49,7 @@ const RelatedItem: React.FC<CategoryType> = ({ category }) => {
           (product, index) =>
             index < 4 && (
               <ProductCard
+                key={product.id}
                 id={`${product.id}`}
                 image={product.image}
                 title={product.title}
