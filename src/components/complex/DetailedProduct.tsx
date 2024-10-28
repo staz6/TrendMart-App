@@ -5,7 +5,7 @@ import Button from "../shared/Button";
 import { useCart } from "../Context/CartContext";
 import { useWishlist } from "../Context/WishlistContext";
 import { IoTrashOutline } from "react-icons/io5";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SkeletonLoader from "../compound/SkeletonLoader";
 import DeliveryReturnInfo from "../compound/DeliveryReturnInfo";
 import { ProductType } from "../../Pages/Product";
@@ -22,6 +22,7 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
   error,
 }) => {
   const { ProductType } = useParams();
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("blue");
@@ -190,7 +191,7 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
             />
           </div>
           <Button
-            onClick={() =>
+            onClick={() => {
               addToCart({
                 title: data?.title,
                 price:
@@ -200,8 +201,9 @@ const DetailedProduct: React.FC<DetailedProductProps> = ({
                 id: `${data.id}`,
                 qty: quantity,
                 image: data.image,
-              })
-            }
+              });
+              navigate("/Cart");
+            }}
             className="bg-red-500 sm:text-base text-sm py-[0.65rem]  text-white px-6 xl:px-10 sm:py-2 rounded hover:bg-red-600 transition"
             description="Buy Now"
             icon={null}

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Coupon from "../compound/Coupon";
 import Button from "../shared/Button";
-import productImage from "../../assets/productImage.png";
 import card1 from "../../assets/BankCardImg1.svg";
 import card2 from "../../assets/BankCardImg2.svg";
 import card3 from "../../assets/BankCardImg3.svg";
@@ -56,7 +55,7 @@ const CheckoutSection: React.FC<CheckoutSectionType> = ({ filledForm }) => {
             key={index}
             name="HAVIT HV-G92 Gamepad"
             price={`${item.price * item.qty}`}
-            imageSrc={productImage}
+            imageSrc={item.image}
           />
         ))}
 

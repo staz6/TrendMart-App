@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Heart from "../../assets/WishListIcon.svg";
-import Cart from "../../assets/Cart.svg";
 import Searchbar from "./Searchbar";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
@@ -13,6 +11,8 @@ import { PiShoppingBagOpen } from "react-icons/pi";
 import { MdOutlineCancel } from "react-icons/md";
 import { HiOutlineStar } from "react-icons/hi";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { GrCart } from "react-icons/gr";
+import { GoHeart } from "react-icons/go";
 
 const ActionPanel: React.FC = () => {
   const { cartItems } = useCart();
@@ -20,16 +20,15 @@ const ActionPanel: React.FC = () => {
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const [showDropdown, setShowDropdown] = useState(false);
   const { setisAuthenticated, isAuthenticated } = useAuthContext();
-  console.log(cartItems);
   return (
     <div className="flex flex-col justify-center items-center lg:justify-normal lg:flex-row gap-5">
       <Searchbar />
 
       <Link
-        className="relative hover:-translate-y-1 duration-200 transition-all"
+        className="relative hover:-translate-y-1 mt-3 lg:mt-0 lg:text-black text-white duration-200 transition-all"
         to="/Wishlist"
       >
-        <img className="w-7 h-8" src={Heart} alt="Cart" />
+        <GoHeart size={28} />
         <AnimatePresence>
           {wishlistItems.length > 0 && (
             <motion.h1
@@ -44,10 +43,10 @@ const ActionPanel: React.FC = () => {
         </AnimatePresence>
       </Link>
       <Link
-        className="relative hover:-translate-y-1 duration-200 transition-all"
+        className="relative hover:-translate-y-1 lg:text-black text-white  duration-200 transition-all"
         to="/Cart"
       >
-        <img className="w-8 h-8" src={Cart} alt="Cart" />
+        <GrCart size={28} />
         <AnimatePresence>
           {totalQuantity > 0 && (
             <motion.h1
