@@ -65,10 +65,10 @@ const MiniCheckoutCart: React.FC = () => {
         )}
       </div>
       {cartItems.length ? (
-        <div className="flex flex-col sm:flex-row  justify-between mb-10">
+        <div className="flex flex-col  md:flex-row  justify-between mb-10">
           <Coupon />
 
-          <div className="border-2 rounded-[0.25rem] font-poppins text-black border-black py-6 px-6 sm:w-96">
+          <div className="border-2 rounded-[0.25rem] mt-10 md:mt-0 font-poppins text-black border-black py-6 px-6 sm:w-96">
             <h1 className="font-medium mb-4 text-lg">Cart Total</h1>
             <div className="flex justify-between ">
               <span>Subtotal:</span>

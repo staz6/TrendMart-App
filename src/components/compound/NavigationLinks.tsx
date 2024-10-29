@@ -9,7 +9,7 @@ const NavigationLinks: React.FC = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `border-b-2 ${isActive ? "border-black" : "border-transparent"} hover:border-black hover:shadow-md transition-all duration-300 `
+          `border-b-2 ${isActive ? "lg:border-black border-white" : "border-transparent"} text-white lg:text-black hover:border-white lg:hover:border-black hover:shadow-md transition-all duration-300 `
         }
       >
         Home
@@ -17,7 +17,7 @@ const NavigationLinks: React.FC = () => {
       <NavLink
         to="/Contact"
         className={({ isActive }) =>
-          `border-b-2 ${isActive ? "border-black" : "border-transparent"} hover:border-black hover:shadow-md transition-all duration-300 `
+          `border-b-2 ${isActive ? "lg:border-black border-white" : "border-transparent"} text-white lg:text-black hover:border-white lg:hover:border-black hover:shadow-md transition-all duration-300 `
         }
       >
         Contact
@@ -25,7 +25,7 @@ const NavigationLinks: React.FC = () => {
       <NavLink
         to="/About"
         className={({ isActive }) =>
-          `border-b-2 ${isActive ? "border-black" : "border-transparent"} hover:border-black hover:shadow-md transition-all duration-300 `
+          `border-b-2 ${isActive ? "lg:border-black border-white" : "border-transparent"} text-white lg:text-black hover:border-white lg:hover:border-black hover:shadow-md transition-all duration-300 `
         }
       >
         About
@@ -34,7 +34,7 @@ const NavigationLinks: React.FC = () => {
         <NavLink
           to="/Sign_Up"
           className={({ isActive }) =>
-            `border-b-2 ${isActive ? "border-black" : "border-transparent"} hover:border-black hover:shadow-md transition-all duration-300 `
+            `border-b-2 ${isActive ? "lg:border-black border-white" : "border-transparent"} text-white lg:text-black hover:border-white lg:hover:border-black hover:shadow-md transition-all duration-300 `
           }
         >
           Sign Up

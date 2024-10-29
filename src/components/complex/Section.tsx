@@ -79,7 +79,7 @@ const Section: React.FC<SectionProps> = ({
       {showPagination && slider && (
         <div className="flex justify-center mt-8 mb-10">
           <Button
-            className="capital bg-button2 px-10 p-3 rounded-[0.25rem] hover:bg-transparent hover:text-button2 border transition-all duration-300 border-button2 "
+            className="capital text-white  bg-button2 px-10 p-3 rounded-[0.25rem] hover:bg-transparent hover:text-button2 border transition-all duration-300 border-button2 "
             onClick={() => navigate(`/${sliderTitle}`)}
             icon=""
             testid="paginationProductsSection"

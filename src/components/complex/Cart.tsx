@@ -11,7 +11,7 @@ const Cart: React.FC = () => {
   return (
     <div data-testid="CartSection">
       {cartItems.length && (
-        <motion.div className="pl-2 md:px-10 text-sm sm:text-base text-center py-4 shadow-CustomBoxShadow my-10 font-poppins text-black grid grid-cols-12 ">
+        <motion.div className="pl-2 md:px-10 text-[12px] sm:text-base text-center py-4 shadow-CustomBoxShadow my-10 font-poppins text-black grid grid-cols-12 ">
           <h1 className="col-span-3">Product</h1>
           <h1 className="col-span-3">Price</h1>
           <h1 className="col-span-3">Quantity</h1>

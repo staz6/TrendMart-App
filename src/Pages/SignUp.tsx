@@ -82,7 +82,7 @@ const SignUp: React.FC = () => {
         setUser({ name: state.name, email: state.email });
         window.alert("Login successful!");
         setLogin(true);
-        navigate("/");
+        navigate("/Cart");
       } else {
         console.log("Invalid email or password.");
         window.alert("Invalid email or password. Please try again.");

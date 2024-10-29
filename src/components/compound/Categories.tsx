@@ -23,8 +23,6 @@ const Categories: React.FC = () => {
     queryFn: fetchCategories,
   });
 
-  console.log(categories);
-
   if (isLoading) {
     return (
       <>

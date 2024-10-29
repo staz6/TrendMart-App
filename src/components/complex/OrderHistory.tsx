@@ -34,8 +34,10 @@ const OrderHistory: React.FC = () => {
   }
 
   return (
-    <div className=" lg:col-span-8 w-full text-black mx-auto px-4 font-poppins">
-      <h2 className="text-3xl font-medium mb-4 text-center">Order History</h2>
+    <div className=" lg:col-span-8 w-full text-black mx-auto font-poppins">
+      <h2 className="text-3xl font-medium mb-4 mt-4 sm:mt-0 text-center">
+        Order History
+      </h2>
 
       <div className="border rounded-lg shadow-CustomBoxShadow p-6 bg-white">
         <h3 className="text-xl font-medium mb-4">Order Summary</h3>

@@ -48,7 +48,7 @@ const CountdownTimer: React.FC = () => {
           {formatNumber(timeLeft.days)}
         </span>
       </div>
-      <span className="text-2xl text-red-500">:</span>
+      <span className="text-2xl text-red-500 mt-4">:</span>
       <div className="flex flex-col items-center">
         <span className="text-sm text-text2 font-poppins font-medium">
           Hours
@@ -57,7 +57,7 @@ const CountdownTimer: React.FC = () => {
           {formatNumber(timeLeft.hours)}
         </span>
       </div>
-      <span className="text-2xl text-red-500">:</span>
+      <span className="text-2xl text-red-500 mt-4">:</span>
       <div className="flex flex-col items-center">
         <span className="text-sm text-text2 font-poppins font-medium">
           Minutes
@@ -66,7 +66,7 @@ const CountdownTimer: React.FC = () => {
           {formatNumber(timeLeft.minutes)}
         </span>
       </div>
-      <span className="text-2xl text-red-500">:</span>
+      <span className="text-2xl text-red-500 mt-4">:</span>
       <div className="flex flex-col items-center">
         <span className="text-sm text-text2 font-poppins font-medium">
           Seconds
